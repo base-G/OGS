@@ -1,0 +1,39 @@
+<html>
+
+<head>
+	<title>Annotations</title>
+
+	<style type="text/css">
+		#content {
+			position: relative;
+			margin: 0 auto;
+			width: 800px;
+			height: auto;
+		}
+
+		#frame {
+			width: 500px;
+			height: 500px;
+			position: absolute;
+		}
+
+		#canvas {
+			width: 500px;
+			height: 500px;
+		    position: absolute;
+		}
+	</style>
+</head>
+
+<body>
+	<button id="target" onclick="clear()">Clear</button>
+		
+	<iframe id="frame" src="test.pdf"></iframe>
+	<div id="canvasDiv"></div>
+
+    <!-- Load scripts after loading the inital content -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="motion.js"></script>
+</body>
+
+</html>
