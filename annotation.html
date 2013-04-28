@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Annotations</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/theme.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/blog.css" type="text/css" media="screen" />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" src="js/pdf.js/src/core.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/util.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/api.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/canvas.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/obj.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/function.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/charsets.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/cidmaps.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/colorspace.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/crypto.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/evaluator.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/fonts.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/glyphlist.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/image.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/metrics.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/parser.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/pattern.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/stream.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/worker.js"></script>
+    <script type="text/javascript" src="js/pdf.js/external/jpgjs/jpg.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/jpx.js"></script>
+    <script type="text/javascript" src="js/pdf.js/src/jbig2.js"></script>
+
+    <script type="text/javascript">
+            PDFJS.workerSrc = 'js/pdf.js/src/worker_loader.js';
+    </script>
+
+    <style>
+        #side2 {
+            padding: 20px;
+            position: absolute;
+            height: auto;
+            right: -50%;
+            top: 60px;
+            margin-top: 30px;
+            border-left: 3px solid #eee;
+            border-bottom: 3px solid #eee;
+            border-top: 3px solid #eee;
+            background-color: white;
+            z-index: 2;
+            display: none;
+        }
+
+        /*#showside {
+            position: fixed;
+            top: 50%;
+            right: 1%;
+            z-index: 3;
+        }*/
+
+        #sketchpad {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 1;
+        }
+
+        #pdfpad {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+
+        }
+
+        #tmpCanvas {
+            display: none;
+        }
+
+        #side {
+            margin-right: -1%;
+        }
+
+        #main {
+            position: relative;
+            height: auto;   
+        }
+
+        .sidebar-nav-fixed {
+            padding: 9px 0;
+            position:fixed;
+            left: 20px;
+            margin-top: 30px;
+            width: 250px;
+        }
+
+        .row-fluid > .span-fixed-sidebar {
+            margin-left: 290px;
+        }
+
+         .sidebar-nav-fixed {
+             position:fixed;
+             top:60px;
+             width:21.97%;
+         }
+
+         @media (max-width: 767px) {
+             .sidebar-nav-fixed {
+                 width:auto;
+             }
+         }
+
+         @media (max-width: 979px) {
+             .sidebar-nav-fixed {
+                 position:static;
+                width: auto;
+             }
+         }
+
+         #navhead {
+            margin-bottom: 50px;
+         }
+
+         #next, #back {
+            margin-top: 50px;
+            margin-left: 1%
+         }
+
+         #user { display: none;}
+
+    </style>
+</head>
+<body>
+	 <?php
+         	spl_autoload_register( function($class) {
+         		include('classes/Login.class.php');
+         	});
+
+         	$login = new Login();
+         	echo "<div id=\"user\">" . $_SESSION['user_email'] . "</div>";
+	?>
+
+    <div id="navhead" class="navbar navbar-inverse navbar-static-top navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="index.html">
+                <strong>base-G</strong>
+            </a>
+            <div class="nav-collapse collapse">
+                <ul class="nav pull-right">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="#" class="active">Grade</a></li>
+                    <li><a href="upload_file.html">Upload</a></li>
+		    <li><a href="php/SelectClass.php">Manage Classes</a></li>
+                    <li><a href="php/SelectTest.php">Manage Tests</a></li>
+
+                    <?php
+                        echo "<li><a class=\"btn-header\" href=\"sign-up.html\">Signed in as: " . $_SESSION['user_email']  . "</a></li>";
+                    ?>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div id="side2" class="span3">
+		<!--
+                <form>
+                    <fieldset>
+                        <legend>Question 1</legend>
+                        <label>Points</label>
+                        <input type="text" placeholder="--/--">
+                        <span class="help-block"></span>
+                        <textarea>Comments</textarea>
+
+                        <label>Comments</label>
+                        <input type="text" placeholder="N/A">
+                    </fieldset>
+                </form>
+
+                <form>
+                    <fieldset>
+                        <legend>Question 2</legend>
+                        <label>Points</label>
+                        <input type="text" placeholder="--/--">
+                        <span class="help-block"></span>
+                        <textarea>Comments</textarea>
+                    </fieldset>
+                </form>
+		-->
+            </div>
+        </div>
+
+<!--     <div id="container" class="container-fluid"> -->
+        <div class="row-fluid">
+            <div id="side" class="span3">
+                <div class="well sidebar-nav sidebar-nav-fixed">
+                    <ul class="nav nav-list">
+                        <?php 
+				spl_autoload_register( function($class) {
+                                        include('classes/Login.class.php');
+                                });
+
+                                $login = new Login();
+                            	
+				$con = mysqli_connect("localhost", "root", "baseg", "baseg");
+                            	$user = $_SESSION['user_email'];
+                            	$result = mysqli_query($con, "SELECT user_id FROM Accounts WHERE user_email = '" . $user . "'");
+                            	$result = mysqli_fetch_array($result);
+                            	$id = $result['user_id'];
+                            
+                            	$result = mysqli_query($con, "SELECT * FROM Class WHERE CreatorID = '" . $id . "'");
+
+                            	while ($row = mysqli_fetch_array($result)) {
+					$classname = $row['ClassName'];
+					$class_id = $row['ClassID'];
+
+                                	echo "<li class=\"nav-header\">" . $classname . "</li>";
+					echo "<ul class=\"nav nav-list\">";
+
+					$query = mysqli_query($con, "SELECT * FROM Tests WHERE CreatorID = '" . $id . "' AND ClassName = '" . $classname . "'");
+					while ($row2 = mysqli_fetch_array($query)) {
+						$testname = $row2['TestName'];
+						$test_id = $row2['TestID'];						
+
+						echo "<li class=\"nav-header\">" . $testname . "</li>";
+						
+						$query2 = mysqli_query($con, "SELECT * FROM StudentTest WHERE TestID = '" . $test_id . "' AND ClassID = '" .$class_id."'");
+						while ($row3 = mysqli_fetch_array($query2)) {
+							$student_id = $row3['StudentID'];
+							echo "<li id=\"" . $test_id . ":" . $class_id . "\"><a class=\"testlink ". $student_id . "\" id=\"" . $row3['Location'] . "\" href=\"#\">Student " . $student_id . "</a></li>";
+						}
+					}
+					
+					echo "</ul>";
+                            	}
+                        ?>
+                        
+			<br />
+                    </ul>
+
+                    <button id="back" class="btn" type="submit"><i class="icon-chevron-left"></i></button>
+                    <button id="next" class="btn" type="submit"><i class="icon-chevron-right"></i></button>
+
+                    <button style="float:right" id="showside" class="btn" type="submit"><i class="icon-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div id="main" class="span9">
+                <canvas id="sketchpad">Your browser does not support canvas, get with the times, please.</canvas>
+                <canvas id="tmpCanvas"></canvas>
+                <canvas id="pdfpad">Your browser does not support canvas, get with the times, please.</canvas>
+            </div>
+        </div>
+    </div>
+
+	<!--
+    <footer id="footer">
+        <div class="container">
+            <div class="row info">
+                <div class="span6 residence">
+                    <ul>
+                        <li>2301 East Lamar Blvd. Suite 140. City, Arlington.</li>
+                        <li>United States, Zip Code TX 76006.</li>
+                    </ul>
+                </div>
+                <div class="span5 touch">
+                    <ul>
+                        <li><strong>P.</strong> 1 817 274 2933</li>
+                        <li><strong>E.</strong><a href="#"> bootstrap@twitter.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row credits">
+                <div class="span12">
+                    <div class="row social">
+                        <div class="span12">
+                            <a href="#" class="facebook">
+                                <span class="socialicons ico1"></span>
+                                <span class="socialicons_h ico1h"></span>
+                            </a>
+                            <a href="#" class="twitter">
+                                <span class="socialicons ico2"></span>
+                                <span class="socialicons_h ico2h"></span>
+                            </a>
+                            <a href="#" class="gplus">
+                                <span class="socialicons ico3"></span>
+                                <span class="socialicons_h ico3h"></span>
+                            </a>
+                            <a href="#" class="flickr">
+                                <span class="socialicons ico4"></span>
+                                <span class="socialicons_h ico4h"></span>
+                            </a>
+                            <a href="#" class="pinterest">
+                                <span class="socialicons ico5"></span>
+                                <span class="socialicons_h ico5h"></span>
+                            </a>
+                            <a href="#" class="dribble">
+                                <span class="socialicons ico6"></span>
+                                <span class="socialicons_h ico6h"></span>
+                            </a>
+                            <a href="#" class="behance">
+                                <span class="socialicons ico7"></span>
+                                <span class="socialicons_h ico7h"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row copyright">
+                        <div class="span12">
+                            © 2013 Clean Canvas. All rights reserved. Theme by Detail Canvas.
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </footer> -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/canvas.js"></script>
+
+</body>
+</html>
