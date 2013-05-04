@@ -14,29 +14,31 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <script type="text/javascript" src="js/pdf.js/src/core.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/util.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/api.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/canvas.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/obj.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/function.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/charsets.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/cidmaps.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/colorspace.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/crypto.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/evaluator.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/fonts.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/glyphlist.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/image.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/metrics.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/parser.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/pattern.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/stream.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/worker.js"></script>
-    <script type="text/javascript" src="js/pdf.js/external/jpgjs/jpg.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/jpx.js"></script>
-    <script type="text/javascript" src="js/pdf.js/src/jbig2.js"></script>
+	<script type="text/javascript" src="js/pdf.js/src/network.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/chunked_stream.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/pdf_manager.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/core.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/util.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/api.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/canvas.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/obj.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/function.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/charsets.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/cidmaps.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/colorspace.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/crypto.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/evaluator.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/fonts.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/glyphlist.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/image.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/metrics.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/parser.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/pattern.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/stream.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/worker.js"></script>
+  <script type="text/javascript" src="js/pdf.js/external/jpgjs/jpg.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/jpx.js"></script>
+  <script type="text/javascript" src="js/pdf.js/src/jbig2.js"></script>
 
     <script type="text/javascript">
             PDFJS.workerSrc = 'js/pdf.js/src/worker_loader.js';
@@ -257,6 +259,9 @@
                     <button id="next" class="btn" type="submit"><i class="icon-chevron-right"></i></button>
 
                     <button style="float:right" id="showside" class="btn" type="submit"><i class="icon-chevron-right"></i></button>
+
+		    <button id="undo" class="btn" type="submit"><i class="icon-arrow-left"></i></button>
+                    <button id="redo" class="btn" type="submit"><i class="icon-arrow-right"></i></button>
                 </div>
             </div>
 

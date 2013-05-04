@@ -8,32 +8,38 @@
 		$page = $_POST['page'];
 	}
 
-	if(isset($_POST['test']) && !empty($_POST['test'])) {
-		$test = $_POST['test'];
+	if(isset($_POST['_class']) && !empty($_POST['_class'])) {
+		$class = $_POST['_class'];
 	}
+
+	if(isset($_POST['_test']) && !empty($_POST['_test'])) {
+                $test = $_POST['_test'];
+        }
+
+	if(isset($_POST['_student']) && !empty($_POST['_student'])) {
+                $student = $_POST['_student'];
+        }
 
 	if(isset($_POST['next']) && !empty($_POST['next'])) {
 		$next = $_POST['next'];
 	}
 	
-	echo "Hello";
+	$con = mysqli_connect("localhost","root","baseg","baseg");
 
-	// $con = mysqli_connect("localhost","root","","test");
+	if (mysqli_connect_errno($con)) {
+   		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+   	}
 
-	// if (mysqli_connect_errno($con)) {
- //  		echo "Failed to connect to MySQL: " . mysqli_connect_error();
- //  	}
+	mysqli_query($con,"INSERT INTO Canvas (ClassID, TestID, StudentID, Page, CanvasData) VALUES (" . intval($class) . ", " . intval($test) . ", " . intval($student) . ", " . intval($page) . ", '" . $canvas . "') ON DUPLICATE KEY UPDATE CanvasData = '" . $canvas . "'");
 
-	// mysqli_query($con,"INSERT INTO canvas (testID, canvas, page) VALUES (" . intval($test) . ", '" . $canvas . "', " . intval($page) . ") ON DUPLICATE KEY UPDATE canvas='" . $canvas . "'");
+   	$result = mysqli_query($con, "SELECT * FROM Canvas WHERE ClassID = " . intval($class) . " AND TestID = " . intval($test) . " AND StudentID = " . intval($student) . " AND Page = " . intval($next));
+   	$row = mysqli_fetch_array($result);
 
- //  	$result = mysqli_query($con, "SELECT * FROM canvas WHERE testID = " . intval($test) . " AND page = " . intval($next));
- //  	$row = mysqli_fetch_array($result);
+   	if ($row['CanvasData'] === NULL) {
+   		echo "";
+   	} else {
+   		echo $row['CanvasData'];
+   	}
 
- //  	if ($row['canvas'] === NULL) {
- //  		echo "";
- //  	} else {
- //  		echo $row['canvas'];
- //  	}
-
-	// mysqli_close($con);
+	mysqli_close($con);
 ?>

@@ -235,7 +235,7 @@ class Login {
 						
 						$subject = "base-G Registration";
 
-						$email_message = "Welcome to base-G!\r\r You can complete registration by clicking the following link:\rhttp://75.64.230.35/verify.php?$activationKey\r\rIf this is an error, ignore this email.\r\rRegards,\r base-G";
+						$email_message = "Welcome to base-G!\r\r You can complete registration by clicking the following link:\rhttp://baseg.codemelody.com/verify.php?$activationKey\r\rIf this is an error, ignore this email.\r\rRegards,\r base-G";
 
 						
 

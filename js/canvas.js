@@ -7,14 +7,49 @@ var context = canvas.getContext('2d');
 var hiddenCanvas = document.getElementById('tmpCanvas');
 var hidden = hiddenCanvas.getContext('2d');
 
+var cur = 0;
+
+var histX = [];
+var histY = [];
+var histDrag = [];
+
+histX[0] = 0;
+histY[0] = 0;
+histDrag[0] = 0;
+
+var lastUndo = false;
+var undoCount = 0;
+
+var gTestID;
+var gClassID;
+var gStudentID;
 /*******************************************
 ********************************************/
 
+function updateArrays(val) {
+	for (var i = 0; i < val; i++) {
+		clickX.pop();
+		clickY.pop();
+		clickDrag.pop();
+	}
+}
+
 $('#sketchpad').mousedown(function (e) {
-    paint = true;
-    var pos = findPos(canvas.offsetParent);
-    addClick(e.pageX - pos.x, e.pageY - pos.y);
-    redraw();
+	if (lastUndo) {
+		updateArrays(histX[cur+undoCount] - histX[cur]);
+		lastUndo = false;
+		undoCount = 0;
+	}
+
+	cur++;
+	histX[cur] = clickX.length;
+	histY[cur] = clickY.length;
+	histDrag[cur] = clickDrag.length;
+
+    	paint = true;
+    	var pos = findPos(canvas.offsetParent);
+    	addClick(e.pageX - pos.x, e.pageY - pos.y);
+    	redraw();
 });
 
 $('#sketchpad').mousemove(function (e) {
@@ -26,7 +61,8 @@ $('#sketchpad').mousemove(function (e) {
 });
 
 $('#sketchpad').mouseup(function (e) {
-    paint = false;
+    	paint = false;
+	redraw();
 });
 
 $('#sketchpad').mouseleave(function (e) {
@@ -70,6 +106,11 @@ var clickDrag = [];
 var paint;
 
 function addClick(x, y, dragging) {
+	histX[cur]++;
+        histY[cur]++;
+        histDrag[cur]++;
+
+
     clickX.push(x);
     clickY.push(y);
     clickDrag.push(dragging);
@@ -82,7 +123,7 @@ function redraw() {
     context.lineJoin = "round";
     context.lineWidth = 5;
 
-    for (var i = 0; i < clickX.length; i++) {
+    for (var i = 0; i < histX[cur]; i++) {
         context.beginPath();
         if (clickDrag[i] && i) {
             context.moveTo(clickX[i - 1], clickY[i - 1]);
@@ -94,6 +135,24 @@ function redraw() {
         context.stroke();
     }
 }
+
+$('#undo').click(function undo() {
+	if (cur > 0) {
+		cur--;
+		lastUndo = true;
+		undoCount++;
+		redraw();
+	}
+});
+
+$('#redo').click(function() {
+	if (histX[cur + 1] != null) {
+		
+
+		cur++;
+		redraw();
+	}
+});
 
 /*******************************************
 ********************************************/
@@ -250,8 +309,7 @@ $("#back").click(function() {
 });
 
 function saveCanvas(plusMinus) {
-    var data = canvas.toDataURL();
-    var test = "1";
+	var data = clickX + 'END' + clickY + 'END' + clickDrag;
 
     if (plusMinus == "plus") {
         var pageNext = pageNum + 1;
@@ -262,26 +320,43 @@ function saveCanvas(plusMinus) {
     empty();
     var res = "";
 
-    var user = $("#user").html();
-
     $.ajax({ 
-        url: 'save.php',
+        url: 'php/save.php',
         data: {
             canvas: data,
             page: pageNum,
             next: pageNext,
-            test: test
+            _class: gClassID,
+	    _test: gTestID,
+	    _student: gStudentID,
         },
         type: 'post',
         
         success: function(output) {
-                    res = output;
-			//alert("Hello");
+                    	res = output;
+
+        		arr = res.split('END');
+
+			var values = arr[0].split(',');
+			clickX = [];
+			clickX = values.slice(0);
+
+			values = arr[1].split(',');
+                        clickY = [];
+			clickY = values.slice(0);
+
+			values = arr[2].split(',');
+                        clickDrag = [];
+			clickDrag = values.slice(0);
+
+			cur = 0;
+			histX[cur] = clickX.length;
+			histY[cur] = clickY.length;
+			histDrag[cur] = clickDrag.length;
+
+			redraw();
                  },
-	error: function() {
-		//alert("Hello");
-	}
-    });
+    });	
 }
 
 function saveScores() {
@@ -310,8 +385,12 @@ $(".testlink").click(function(event) {
 	var class_id = tmp[1];
 	var student_id = $(this).attr('class').split(' ')[1];
 
+	gTestID = test_id;
+	gClassID = class_id;
+	gStudentID = student_id;
+
 	$.ajax({
-		url: 'questions.php',
+		url: 'php/questions.php',
 		data: {
 			_test: test_id,
 			_class: class_id

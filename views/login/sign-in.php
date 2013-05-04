@@ -102,7 +102,7 @@
         </div>
     </div>
 
-<a name="signup" ></a>
+<a id="signup" name="signup" ></a>
     <!-- Sign In Option 2 -->
     <div id="sign_in2">
         <div class="container">
@@ -151,7 +151,7 @@
                             </div>
 
                             <div class="form">
-                                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?action=register" name="registerform" id="registerform">
+                                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>#signup" name="registerform" id="registerform">
                                 
                                 <?php
 
