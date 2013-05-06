@@ -1,17 +1,46 @@
+
+			<?php
+include("/var/www/include/send.php");
+
+if(isset($_POST["reset"]) && !empty($_POST['user_email'])) {
+
+				$resetKey =  mt_rand() . mt_rand() . mt_rand() . mt_rand() . mt_rand();
+				
+	
+
+		mysql_connect("localhost", "root", "baseg") or die(mysql_error()); 
+		mysql_select_db("baseg") or die(mysql_error()); 
+		
+		mysql_query("UPDATE Accounts SET resetkey=".$resetKey." WHERE user_email='".$_POST['user_email']."'");
+		
+		
+		
+
+
+                       $message = "<p>Your password reset request was successfully submitted. An email has been sent with a link to reset password. Please <a href='process.php'>click here to login</a>.</p>";
+						
+						$subject = "base-G Password Change Request";
+
+						$email_message = "Welcome to base-G!\r\r You can reset your password by clicking the following link:\rhttp://baseg.codemelody.com/resetpassword.php?".$resetKey."\r\rIf this is an error, ignore this email.\r\rRegards,\r base-G";
+
+						
+
+					        sendmail($_POST['user_email'],$subject,$email_message);		
+		
+		}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home - base-G</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Reset - base-G</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
     <!-- Styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/theme.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-
-    <link rel="stylesheet" type="text/css" href="css/lib/animate.css" media="screen, projection">
-    <link rel="stylesheet" href="css/coming-soon.css" type="text/css" media="screen" />
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -27,101 +56,44 @@
                 <span class="icon-bar"></span>
             </a>
             <a class="brand" href="index.html">
-                <strong>CLEAN CANVAS</strong>
+                <strong>base-G</strong>
             </a>
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about-us.html">About</a></li>
-                    <li><a class="btn-header" href="<?php echo $_SERVER['PHP_SELF']; ?>?action=logout">Logout</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="process.php">Sign in</a></li>
+                    <li><a href="process.php#signup">Sign up</a></li>
+                  
                 </ul>
             </div>
         </div>
       </div>
     </div>
 
-    <!-- Sign In Option 1 -->
-    <div id="coming_soon">
-        <div class="head">
-            <div class="container">
-                <div class="span6 text">
-                    <h4>We are launching very soon</h4>
-                    <p>
-                        We are currently working on an awesome new site. <span>STAY TUNED!</span>
-                        <br />
-                        Please don´t  forget to check out our tweets and subscribe to be notified.</p>
-                </div>
-
-                <div class="span6 count">
-                    <div class="box last">
-                        <div class="circle">
-                            <span>22</span>
+    <div id="reset_pwd" class="reset_page">
+        <div class="container">
+            <div class="row">
+                <div class="span12 box_wrapper">
+                <div class="span12 box">
+                    <div>
+                        <div class="head">
+                            <h4>Enter your email address below to receive instructions on how to reset your password.</h4>
+                            <div class="line"></div>
                         </div>
-                        <p>Seconds</p>
-                    </div>
-                    <div class="box">
-                        <div class="circle">
-                            <span>34</span>
+                        <div class="form">
+						<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" name="resetform" id="resetform"> 
+                        
+                        <?php  if (isset($_POST["reset"])) {
+	        echo '<div class="message_success">'.$message.'</div>'; 
+	} ?>                        <input type="text" name="user_email" placeholder="Email address"/>
+                                <input type="submit" class="btn" name="reset" value="Reset password"/>
+                            </form>
                         </div>
-                        <p>Minutes</p>
-                    </div>
-                    <div class="box">
-                        <div class="circle">
-                            <span>75</span>
-                        </div>
-                        <p>Hours</p>
-                    </div>
-                    <div class="box">
-                        <div class="circle">
-                            <span>165</span>
-                        </div>
-                        <p>Days</p>
                     </div>
                 </div>
+                <p class="already">Know your password? <a href="sign-in.html"> Sign in</a></p>
             </div>
-        </div>
-
-        <div class="email_wrapp">
-            <div class="container">
-                <div class="span11 wrapp">
-                    <p><strong>Sign up here</strong> to be one of the first to know when it´s ready</p>
-                    <input type="text" placeholder="Email address...">
-                    <a href="#" class="btn send">ok</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="social">
-            <div class="container">
-                    <p>Follow us</p>
-                    <a href="#" class="facebook">
-                        <span class="icons ico1"></span>
-                        <span class="iconsh ico1h"></span>
-                    </a>
-                    <a href="#" class="twitter">
-                        <span class="icons ico2"></span>
-                        <span class="iconsh ico2h"></span>
-                    </a>
-                    <a href="#" class="gplus">
-                        <span class="icons ico3"></span>
-                        <span class="iconsh ico3h"></span>
-                    </a>
-                    <a href="#" class="flickr">
-                        <span class="icons ico4"></span>
-                        <span class="iconsh ico4h"></span>
-                    </a>
-                    <a href="#" class="pinterest">
-                        <span class="icons ico5"></span>
-                        <span class="iconsh ico5h"></span>
-                    </a>
-                    <a href="#" class="dribble">
-                        <span class="icons ico6"></span>
-                        <span class="iconsh ico6h"></span>
-                    </a>
-                    <a href="#" class="behance">
-                        <span class="icons ico7"></span>
-                        <span class="iconsh ico7h"></span>
-                    </a>
             </div>
         </div>
     </div>

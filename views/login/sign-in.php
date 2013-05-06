@@ -90,7 +90,7 @@
                         <label class="checkbox">
                             <input type="checkbox"> Remember me
                         </label>
-                        <a href="reset.html">Forgot password?</a>
+                        <a href="reset.php">Forgot password?</a>
                     </div>
 
                     <div class="span3 dosnt">

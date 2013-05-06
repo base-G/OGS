@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Upload - base-G</title>
+	<title>Manage Classes - base-G</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
@@ -12,11 +12,17 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" type="text/css" href="css/lib/animate.css" media="screen, projection">
-    <link rel="stylesheet" href="css/upload.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/manage.css" type="text/css" media="screen" />
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+	<style>
+		#createContent, #success, #error, #deleteContent, #success2, #error2 { display: none; }
+		.curUser { display: none; }
+
+	</style>
+
 </head>
 <body>
 	<?php
@@ -25,7 +31,15 @@
                 });
 
                 $login = new Login();
+
+		$con = mysqli_connect("localhost", "root", "baseg", "baseg");
+                $user = $_SESSION['user_email'];
+                $result = mysqli_query($con, "SELECT user_id FROM Accounts WHERE user_email = '" . $user . "'");
+                $result = mysqli_fetch_array($result);
+                $id = $result['user_id'];
         ?>
+
+	<span id=<?php echo '"' . $id . '"' ?> class="curUser"></span>
 
     <div id="cover">
         <div class="navbar navbar-inverse navbar-static-top">
@@ -44,9 +58,9 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="annotation.html">Grade</a></li>
-                        <li><a href="#" class="active">Upload</a></li>
-			<li><a href="manageClass.php">Manage Classes</a></li>
-                        <li><a href="php/SelectTest.php">Manage Tests</a></li>
+                        <li><a href="#">Upload</a></li>
+			<li><a href="#" class="active">Manage Classes</a></li>
+                        <li><a href="SelectTest.php">Manage Tests</a></li>
                         <?php echo "<li><a href=\"#\">Sign in as: " . $_SESSION['user_email'] . "</a></li>"; ?>
                     </ul>
                 </div>
@@ -54,81 +68,55 @@
           </div>
         </div>
 
-        <!-- Sign In Option 1 -->
         <div id="sign_in1">
             <div class="container">
                 <div class="row">
                     <div class="span12 header">
-                        <h4>Upload your tests</h4>
-                        <p>
-                            Please fill in the information regarding the test you are uploading, and then hit upload to add it to our database.</p>
-
-                        <div class="span4 social">
-                            
-                        </div>
+                        <h4>Create/Delete Classes</h4>
+                        <p>To start, select an option.</p>
                     </div>
 
-                    <div class="span3 division">
-                        <div class="line l"></div>
-                        <span>upload</span>
-                        <div class="line r"></div>
-                    </div>
+		<div class="span6 division">
+			<p>
+				<button id="create" class="btn" type="button">Create</button>
+				<button id="delete" class="btn" type="button">Delete</button>
+                	</p>
+		</div>
 
-                    <div class="span12 footer">
-                        <form id="myform" action="php/upload.php" method="post" enctype="multipart/form-data">
-                                <?php
-                                    // Connect to the database.
-                                    $con = mysqli_connect("localhost", "root", "baseg", "baseg");
-                                    	if (mysqli_connect_errno($con)) {
-  				        	echo "Failed to connect to MySQL: " . mysqli_connect_error();
-     		 			} 
+		<div id="createContent" class="span6 division">
+			<form id="createForm" class="form-inline" action="php/addClass.php" method="post">
+				<div id="success" class="alert alert-success">
+  					Class Added!
+				</div>
 
-					$user = $_SESSION['user_email'];
+				<div id="error" class="alert alert-error">
+                                        An error occured when trying to add that class.
+                                </div>
 
-                                    // Get the user ID.
-                                    $result = mysqli_query($con, "SELECT user_id FROM Accounts WHERE user_email = '" . $user . "'");
-                                    $result = mysqli_fetch_array($result);
-                                    $id = $result['user_id'];
+				<input type="hidden" name="creator" value=<?php echo '"' .$id . '"' ?>>
+  				<input class="span3" type="text" name="classname" placeholder="Class Name">
+				<button id="createSubmit" type="submit" class="btn">Submit</button>
+			</form>
+		</div>
 
-                                    echo "<select name=\"myclass\" class=\"span3\" onChange=\"updateTests(this.value, " . $id . ");\">";
-                                    echo "<option selected=\"selected\">Select Class</option>";
+		<div id="deleteContent" class="span6 division">
+                        <form id="deleteForm" class="form-inline" action="php/deleteClass.php" method="post">
+                                <div id="success2" class="alert alert-success">
+                                        Class Deleted!
+                                </div>
 
-                                    $result = mysqli_query($con, "SELECT * FROM Class WHERE CreatorID = '" . $id . "'");
+                                <div id="error2" class="alert alert-error">
+                                        An error occured when trying to delete that class.
+                                </div>
 
-                                    while ($row = mysqli_fetch_array($result)) {
-                                        echo "<option>" . $row['ClassName'] . "</option>";
-                                    }
+                                <input type="hidden" name="creator" value=<?php echo '"' .$id . '"' ?>>
 
-                                    mysqli_close($con);
-
-                                    echo "</select>";
-                                    echo "<select name=\"mytest\" class=\"span3\" id=\"tests\">";
-                                    echo "<option selected=\"selected\">Select Test</option>";
-                                    echo "</select>";
-                                ?>
-                            
-                            <!--
-                            <select class="span3" id="students">
-                                <option selected="selected">Select Student</option>
-                            </select>
-				-->
-
-                            <br /><br />
-
-				<div class="fileupload fileupload-new" data-provides="fileupload">
-                              <div class="input-append">
-                                <div class="uneditable-input span3"><i class="icon-file fileupload-exists"></i> <span class="fileupload-preview"></span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input name="file" type="file" /></span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
-                              	</div>
-                            	</div>
-
-                            <br />
-                            <input id="formSub" type="submit" name="submit" value="Submit">
+				<select id="class" name="class" class="span3">
+				</select>
+                                <button id="createSubmit" type="submit" class="btn">Submit</button>
                         </form>
-                    </div>
+                </div>
 
-                    <!-- <div class="span12 proof"> -->
-                        
-                    <!-- </div> -->
                 </div>
             </div>
         </div>
@@ -182,8 +170,8 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/jasny-bootstrap.js"></script>
-    <script src="js/theme.js"></script>
-	<script src="http://malsup.github.com/jquery.form.js"></script> 
-    <script src="js/updateData.js"></script>
+    <script src="js/theme.js"></script> 
+    <script src="http://malsup.github.com/jquery.form.js"></script> 
+    <script src="js/manage.js"></script>
 </body>
 </html>

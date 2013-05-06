@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +12,8 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" type="text/css" href="css/lib/animate.css" media="screen, projection">
-    <link rel="stylesheet" href="css/coming-soon.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/index.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../css/coming-soon.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../css/index.css" type="text/css" media="screen" />
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -33,32 +34,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="index.html">
+            <a class="brand" href="../index.html">
                 <strong>base-G</strong>
             </a>
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="../index.html" class="active">Home</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="process.php">Sign in</a></li>
+                    <li><a href="process.php#signup">Sign up</a></li>
 
-			<?php
-				spl_autoload_register( function($class) {
-    					include('classes/' . $class . '.class.php');
-				});
-
-				$login = new Login();
-
-				if ($login->isLoggedIn()) {
-					echo "<li><a href=\"annotation.html\">Grade</a></li>";
-                                        echo "<li><a href=\"upload_file.html\">Upload</a></li>";
-					echo "<li><a href=\"manageClass.php\">Manage Classes</a></li>";
-					echo "<li><a href=\"SelectTest.php\">Manage Tests</a></li>";
-					echo "<li><a href=\"" . $_SERVER['PHP_SELF'] . "?action=logout\">Logout</a></li>";
-				} else {
-					echo "<li><a href=\"process.php\">Sign in</a></li>";
-                    			echo "<li><a href=\"process.php#signup\">Sign up</a></li>";
-				}
-			?>
+			
                 </ul>
             </div>
         </div>
@@ -71,41 +57,34 @@
             <div class="container">
                 <br /><br /><br />
                 <div class="span6 text">
-                    <h4>We are launching very soon</h4>
+                    <h4>Account Activated!</h4>
                     <p>
-                        The revolutionary grading system is in its final stages. <span>STAY TUNED!</span>
-                        <br />
-                        We are currently in beta testing, check back regularly for updates!</p>
-                </div>
+                        
+<?php
+mysql_connect("localhost","root","baseg");
+@mysql_select_db("baseg");
 
-                <div class="span6 count">
-                    <div class="box last">
-                        <div class="circle">
-                            <span id="seconds">*</span>
-                        </div>
-                        <p>Seconds</p>
-                    </div>
-                    <div class="box">
-                        <div class="circle">
-                            <span id="minutes">*</span>
-                        </div>
-                        <p>Minutes</p>
-                    </div>
-                    <div class="box">
-                        <div class="circle">
-                            <span id="hours">*</span>
-                        </div>
-                        <p>Hours</p>
-                    </div>
-                    <div class="box">
-                        <div class="circle">
-                            <span id="days">*</span>
-                        </div>
-                        <p>Days</p>
-                    </div>
+$queryString = $_SERVER['QUERY_STRING'];
+$query = "SELECT * FROM Accounts"; 
+$result = mysql_query($query) or die(mysql_error());
+while($row = mysql_fetch_array($result))
+{
+	if ($queryString == $row["activationkey"])
+	{
+		echo "<p>Congratulations! " . $row["user_first_name"] . " Your account is activated.</p>";
+	
+
+		
+		
+		mysql_query("UPDATE Accounts SET user_activated=1
+		WHERE activationkey='$queryString'");
+		
+	}
+}
+?></p>
                 </div>
-            </div>
-        </div>
+</div></div>
+               
 
         <!-- <div class="email_wrapp">
             <div class="container">
@@ -183,8 +162,8 @@
     </footer>
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/theme.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/theme.js"></script>
 
     <script>
         window.setInterval(function(){
@@ -210,3 +189,5 @@
     </script>
 </body>
 </html>
+
+
