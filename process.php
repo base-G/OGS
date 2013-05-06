@@ -17,7 +17,7 @@ if ($login->checkForRegisterPage()) {
 	
 	 if ($login->isLoggedIn()) {
         #include("views/login/coming-soon.php");
-	include("index.html");
+	include("views/login/user.php");
         // further stuff here
     } else {
         // not logged in, showing the login form

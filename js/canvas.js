@@ -393,16 +393,20 @@ $(".testlink").click(function(event) {
 		url: 'php/questions.php',
 		data: {
 			_test: test_id,
-			_class: class_id
+			_class: class_id,
+			_student: student_id
 		},
 		type: 'post',
 		success: function(output) {
 			$("#side2").empty();
-			var res = output.split(" ");
+			var resTmp = output.split("\n");
+			var res = resTmp[0].split(" ");
+			var res2 = resTmp[1].split(" ");
 			for (var i = 0; i < res.length - 1; i++) {
 				var tmp = res[i].split(":");
+				var tmp2 = res2[i].split(":");
 
-				var q2 = '<form id="' + student_id + ':' + class_id + ':' + test_id + ':' + tmp[0] + '" class="question"><fieldset><legend>Question '+(i+1)+'</legend><div class="input-append"><input class="span2" id="appendedInput" type="text" name="value"><span class="add-on">/' + tmp[1] + '</span></div><span class="help-block"></span></fieldset></form>';
+				var q2 = '<form id="' + student_id + ':' + class_id + ':' + test_id + ':' + tmp[0] + '" class="question"><fieldset><legend>Question '+(i+1)+'</legend><div class="input-append"><input class="span2" id="appendedInput" type="text" name="value" value="' + tmp2[1] + '"><span class="add-on">/' + tmp[1] + '</span></div><span class="help-block"></span></fieldset></form>';
 				$("#side2").append(q2);	
 			}
 		}

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en" dir="ltr">
+  <head>
+<base href="https://launchpad.net/ubuntu/quantal/+package/libdc1394-22/+index" />
+
+    <meta charset="UTF-8" />
+    <title>libdc1394-22 : Quantal (12.10) : Ubuntu</title>
+    <link rel="shortcut icon" href="/@@/launchpad.png" />
+    
+    
+    
+
+    
+  
+  <link type="text/css" rel="stylesheet"
+        media="screen, print"
+        href="/+icing/rev16598/combo.css" />
+
+
+    
+
+    
+      <meta name="description"
+            content=" libdc1394 is a library that is intended to provide a high level
+ programming interface for application developers who wish to control
+ IEEE 1394 based cameras that conform to the 1394-based Digital Camera
+ Specification (found at http://www.1394ta.org/).
+ .
+ This version of libdc1394 supports both the old and new (juju) FireWire stack.
+ It automatically detects which one to use at runtime.
+ .
+ This package contains shared libraries." />
+    
+
+    
+  
+
+  
+  
+  <script type="text/javascript">
+    var LP = {
+        cache: {},
+        links: {}
+    };
+  </script>
+
+  
+
+  <script type="text/javascript">var cookie_scope = '; Path=/; Secure; Domain=.launchpad.net';</script>
+
+   <script type="text/javascript"
+           src="/+combo/rev16598/?yui-3.9.1/yui/yui-min.js&amp;lp/meta.js&amp;yui-3.9.1/loader/loader-min.js"></script>
+   <script type="text/javascript">
+        var raw = null;
+        if (LP.devmode) {
+           raw = 'raw';
+        }
+        YUI.GlobalConfig = {
+            combine: true,
+            comboBase: '/+combo/rev16598/?',
+            root: 'yui-3.9.1/',
+            filter: raw,
+            debug: false,
+            fetchCSS: false,
+            maxURLLength: 2000,
+            groups: {
+                lp: {
+                    combine: true,
+                    base: '/+combo/rev16598/?lp/',
+                    comboBase: '/+combo/rev16598/?',
+                    root: 'lp/',
+                    // comes from including lp/meta.js
+                    modules: LP_MODULES,
+                    fetchCSS: false
+                }
+            }
+        }</script>
+
+  <script type="text/javascript">
+      // we need this to create a single YUI instance all events and code
+      // talks across. All instances of YUI().use should be based off of
+      // LPJS instead.
+      LPJS = new YUI();
+  </script>
+
+
+
+    <script id="base-layout-load-scripts" type="text/javascript">
+        //<![CDATA[
+        LPJS.use('base', 'node', 'console', 'event',
+            'oop', 'lp', 'lp.app.foldables','lp.app.sorttable',
+            'lp.app.inlinehelp', 'lp.app.links', 'lp.app.longpoll',
+            'lp.bugs.bugtask_index', 'lp.bugs.subscribers',
+            'lp.app.ellipsis', 'lp.code.branchmergeproposal.diff',
+            'lp.views.global',
+             function(Y) {
+
+            Y.on("domready", function () {
+                var global_view = new Y.lp.views.Global();
+                global_view.render();
+
+                Y.lp.app.sorttable.SortTable.init();
+                Y.lp.app.inlinehelp.init_help();
+                Y.lp.activate_collapsibles();
+                Y.lp.app.foldables.activate();
+                Y.lp.app.links.check_valid_lp_links();
+                // Longpolling will only start if
+                // LP.cache.longpoll is populated.
+                // We use Y.later to work around a Safari/Chrome 'feature':
+                // The mouse cursor stays 'busy' until all the requests started during
+                // page load are finished.  Hence we want the long poll request to start
+                // right *after* the page has loaded.
+                Y.later(0, Y.lp.app.longpoll, Y.lp.app.longpoll.setupLongPollManager);
+
+            });
+
+            Y.on('lp:context:web_link:changed', function(e) {
+                  window.location = e.new_value;
+            });
+        });
+        //]]>
+    </script>
+    <script id="base-helper-functions" type="text/javascript">
+         //<![CDATA[
+        // This code is pulled from lp.js that needs to be available on every
+        // request. Pulling here to get it outside the scope of the YUI block.
+        function setFocusByName(name) {
+            // Focus the first element matching the given name which can be focused.
+            var nodes = document.getElementsByName(name);
+            var i, node;
+            for (i = 0; i < nodes.length; i++) {
+                node = nodes[i];
+                if (node.focus) {
+                    try {
+                        // Trying to focus a hidden element throws an error in IE8.
+                        if (node.offsetHeight !== 0) {
+                            node.focus();
+                        }
+                    } catch (e) {
+                        LPJS.use('console', function(Y) {
+                            Y.log('In setFocusByName(<' +
+                                node.tagName + ' type=' + node.type + '>): ' + e);
+                        });
+                    }
+                    break;
+                }
+            }
+        }
+
+        function selectWidget(widget_name, event) {
+          if (event && (event.keyCode === 9 || event.keyCode === 13)) {
+              // Avoid firing if user is tabbing through or simply pressing
+              // enter to submit the form.
+              return;
+          }
+          document.getElementById(widget_name).checked = true;
+        }
+        //]]>
+    </script>
+
+    
+      
+    
+  </head>
+
+  <body id="document" itemscope=""
+        itemtype="http://schema.org/WebPage"
+        class="tab-overview
+      main_only
+      public
+      yui3-skin-sam">
+          
+          
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-12833497-1']);
+          _gaq.push(['_setDomainName', '.launchpad.net']);
+          _gaq.push(['_setAllowHash', false]);
+          _gaq.push(['_trackPageview']);
+        </script>
+        <script type="text/javascript"
+                src="https://launchpad.net/+icing/rev16598/google-analytics/ga.js"></script>
+    <div class="yui-d0">
+      <div id="locationbar" class="login-logout">
+        
+
+<div id="logincontrol"><a href="https://launchpad.net/ubuntu/quantal/+package/libdc1394-22/+login">Log in / Register</a></div>
+
+
+
+      </div><!--id="locationbar"-->
+
+      <div id="watermark" class="watermark-apps-portlet">
+        <div>
+          <a href="https://launchpad.net/ubuntu"><img alt="" width="64" height="64" src="https://launchpadlibrarian.net/49558155/64_logo.png" /></a>
+        </div>
+        <div class="wide">
+          <h2>Ubuntu</h2>
+          
+  <!-- Application Menu -->
+  <ul class="facetmenu">
+    
+      <li class="overview active"><span>Overview</span></li>
+      
+      
+    
+    
+      
+      
+      <li class="branches disabled-tab"><span>Code</span></li>
+    
+    
+      
+      
+      <li class="bugs disabled-tab"><span>Bugs</span></li>
+    
+    
+      
+      
+      <li class="specifications disabled-tab"><span>Blueprints</span></li>
+    
+    
+      
+      
+      <li class="translations disabled-tab"><span>Translations</span></li>
+    
+    
+      
+      
+      <li class="answers disabled-tab"><span>Answers</span></li>
+    
+  </ul>
+
+        </div>
+      </div>
+
+      
+        <div id="maincontent" class="yui-main">
+          <div class="yui-b" dir="ltr">
+            <div class="context-publication">
+              
+    <h2>Binary package “libdc1394-22” in ubuntu quantal</h2>
+  
+              <ol itemprop="breadcrumb" class="breadcrumbs">
+
+
+  <li>
+    <a href="https://launchpad.net/ubuntu">Ubuntu</a>
+  </li>
+
+
+  <li>
+    <a href="https://launchpad.net/ubuntu/quantal">Quantal (12.10)</a>
+  </li>
+
+
+  <li>
+    libdc1394-22
+  </li>
+
+</ol>
+
+              <div id="registration" class="registering">
+                
+              </div>
+            </div>
+
+            
+            <div id="request-notifications">
+              
+            </div>
+
+            
+              <div>
+
+  <h1>high level programming interface for IEEE1394 digital camera</h1>
+
+  <p>&nbsp;libdc1394 is a library that is intended to provide a high level<br />
+&nbsp;programming interface for application developers who wish to control<br />
+&nbsp;IEEE 1394 based cameras that conform to the 1394-based Digital Camera<br />
+&nbsp;Specification (found at <a rel="nofollow" href="http://www.1394ta.org/">http://<wbr />www.1394ta.<wbr />org/</a>).<br />
+&nbsp;.<br />
+&nbsp;This version of libdc1394 supports both the old and new (juju) FireWire stack.<br />
+&nbsp;It automatically detects which one to use at runtime.<br />
+&nbsp;.<br />
+&nbsp;This package contains shared libraries.</p>
+
+  <div class="portlet">
+    <h2>Source package</h2>
+
+      <div id="source">
+        <ul>
+          <li class="source package">
+            <a id="source_package"
+               href="/ubuntu/quantal/+source/libdc1394-22/2.2.0-2build1">"libdc1394-22" 2.2.0-2build1 source package in The Quantal Quetzal</a>
+          </li>
+        </ul>
+      </div>
+  </div>
+
+  <div class="portlet" id="portlet-published">
+
+  <h2>Published versions</h2>
+
+    <ul>
+      <li class="binary package">
+        <a href="/ubuntu/quantal/amd64/libdc1394-22/2.2.0-2">
+          libdc1394-22
+          2.2.0-2
+          in
+          amd64
+          (Release)
+        </a>
+      </li>
+      <li class="binary package">
+        <a href="/ubuntu/quantal/amd64/libdc1394-22/2.2.0-2build1">
+          libdc1394-22
+          2.2.0-2build1
+          in
+          amd64
+          (Release)
+        </a>
+      </li>
+      <li class="binary package">
+        <a href="/ubuntu/quantal/armel/libdc1394-22/2.2.0-2">
+          libdc1394-22
+          2.2.0-2
+          in
+          armel
+          (Release)
+        </a>
+      </li>
+      <li class="binary package">
+        <a href="/ubuntu/quantal/armel/libdc1394-22/2.2.0-2build1">
+          libdc1394-22
+          2.2.0-2build1
+          in
+          armel
+          (Release)
+        </a>
+      </li>
+      <li class="binary package">
+        <a href="/ubuntu/quantal/armhf/libdc1394-22/2.2.0-2">
+          libdc1394-22
+          2.2.0-2
+          in
+          armhf
+          (Release)
+        </a>
+      </li>
+      <li class="binary package">
+        <a href="/ubuntu/quantal/armhf/libdc1394-22/2.2.0-2build1">
+          libdc1394-22
+          2.2.0-2build1
+          in
+          armhf
+          (Release)
+        </a>
+      </li>
+      <li class="binary package">
+        <a href="/ubuntu/quantal/i386/libdc1394-22/2.2.0-2">
+          libdc1394-22
+          2.2.0-2
+          in
+          i386
+          (Release)
+        </a>
+      </li>
+      <li class="binary package">
+        <a href="/ubuntu/quantal/i386/libdc1394-22/2.2.0-2build1">
+          libdc1394-22
+          2.2.0-2build1
+          in
+          i386
+          (Release)
+        </a>
+      </li>
+      <li class="binary package">
+        <a href="/ubuntu/quantal/powerpc/libdc1394-22/2.2.0-2">
+          libdc1394-22
+          2.2.0-2
+          in
+          powerpc
+          (Release)
+        </a>
+      </li>
+      <li class="binary package">
+        <a href="/ubuntu/quantal/powerpc/libdc1394-22/2.2.0-2build1">
+          libdc1394-22
+          2.2.0-2build1
+          in
+          powerpc
+          (Release)
+        </a>
+      </li>
+    </ul>
+    
+</div>
+
+
+</div>
+            
+            
+          </div><!-- yui-b -->
+        </div><!-- yui-main -->
+
+        
+          <!-- yui-b side -->
+        
+      <!-- yui-t4 -->
+
+      
+  <div id="footer" class="footer">
+    <div class="lp-arcana">
+        <div class="lp-branding">
+          <a href="https://launchpad.net/"><img src="/@@/launchpad-logo-and-name-hierarchy.png" alt="Launchpad" /></a>
+          &nbsp;&bull;&nbsp;
+          <a href="https://launchpad.net/+tour">Take the tour</a>
+          &nbsp;&bull;&nbsp;
+          <a href="https://help.launchpad.net/">Read the guide</a>
+          &nbsp;
+          <form id="globalsearch" method="get"
+                accept-charset="UTF-8"
+                action="https://launchpad.net/+search">
+            <input type="search" id="search-text" name="field.text" />
+            <input type="image" src="/@@/search" style="vertical-align:5%" alt="Search Launchpad" />
+          </form>
+        </div>
+        
+  
+
+    </div>
+
+    <div class="colophon">
+      &copy; 2004-2013
+      <a href="http://canonical.com/">Canonical&nbsp;Ltd.</a>
+      &nbsp;&bull;&nbsp;
+      <a href="https://launchpad.net/legal">Terms of use</a>
+      &nbsp;&bull;&nbsp;
+      <a href="/feedback">Contact Launchpad Support</a>
+      
+      &nbsp;&bull;&nbsp;
+      <a href="http://blog.launchpad.net/">Blog</a>
+      
+	&nbsp;&bull;&nbsp;
+	<a href="http://www.canonical.com/about-canonical/careers">Careers</a>
+      
+      &nbsp;&bull;&nbsp;
+      <a href="http://identi.ca/launchpadstatus">System status</a>
+      <span id="lp-version">
+      &nbsp;&bull;&nbsp;
+        r16598
+        
+        
+        (<a href="https://dev.launchpad.net/">Get the code!</a>)
+      </span>
+    </div>
+  </div>
+
+    </div><!-- yui-d0-->
+
+    <div id="help-pane" class="invisible">
+      <div id="help-body">
+        
+        <iframe id="help-pane-content" class="invisible" src="javascript:void(0);"></iframe>
+      </div>
+      <div id="help-footer">
+        <span id="help-close"></span>
+      </div>
+    </div>
+
+    
+  
+  
+  <script id="json-cache-script">LP.cache = {"related_features": {}};</script>
+
+    
+  
+
+    
+  </body>
+
+
+  <!--
+    Facet name: overview
+    Page type: main_only
+    Has global search: True
+    Has application tabs: True
+    Has side portlets: False
+
+    At least 33 queries/external actions issued in 0.24 seconds
+
+    Features: {'profiling.enabled': None, 'js.yui_version': u'yui-3.9.1', 'visible_render_time': None, 'baselayout.careers_link.disabled': None, 'hard_timeout': u'5000'}
+
+    r16598
+
+    -->
+
+</html>
+

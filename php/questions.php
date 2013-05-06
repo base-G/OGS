@@ -8,6 +8,11 @@
 		$_test = $_POST['_test'];
 	}
 
+	if(isset($_POST['_student']) && !empty($_POST['_student'])) {
+                $_student = $_POST['_student'];
+        }
+
+
 	$con = mysqli_connect("localhost","root","baseg","baseg");
 
 	if (mysqli_connect_errno($con)) {
@@ -18,6 +23,14 @@
   	while ($row = mysqli_fetch_array($result)) {
 		echo $row['QuestionID'] . ":" . $row['PointVal'] . " ";
 	}
+
+	echo "\n";
+	
+	$result = mysqli_query($con, "SELECT * FROM Results WHERE TestID = " . intval($_test) . " AND ClassID = " . intval($_class) . " AND StudentID = " . intval($_student));
+	while ($row = mysqli_fetch_array($result)) {
+                echo $row['QuestionID'] . ":" . $row['Points'] . " ";
+        }
+
 
 	mysqli_close($con);
 ?>
