@@ -12,7 +12,7 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" type="text/css" href="css/lib/animate.css" media="screen, projection">
-    <link rel="stylesheet" href="css/manage.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/manage2.css" type="text/css" media="screen" />
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -20,7 +20,10 @@
 	<style>
 		#createContent, #success, #error, #deleteContent, #success2, #error2 { display: none; }
 		.curUser { display: none; }
-
+		
+		#footer {
+			/*margin-top: 400px !important;*/
+		}
 	</style>
 
 </head>
@@ -54,15 +57,25 @@
                     <strong>base-G</strong>
                 </a>
                 <div class="nav-collapse collapse">
-                    <ul class="nav pull-right">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="annotation.html">Grade</a></li>
-                        <li><a href="#">Upload</a></li>
-			<li><a href="#" class="active">Manage Classes</a></li>
-                        <li><a href="SelectTest.php">Manage Tests</a></li>
-                        <?php echo "<li><a href=\"#\">Sign in as: " . $_SESSION['user_email'] . "</a></li>"; ?>
-                    </ul>
+			<ul class="nav pull-right">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+
+                        <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                        <li><a href="annotation.html">Grade</a></li>
+                                        <li><a href="upload_file.html">Upload</a></li>
+                                        <li><a href="manageClass.php" class="active">Manage Classes</a></li>
+                                        <li><a href="SelectTest.php">Manage Tests</a></li>
+					<li><a href="results.php">Results</a></li>
+                                </ul>
+                        </li>
+                    <?php
+                        echo "<li><a class=\"btn-header\" href=\"process.php\">Signed in as: " . $_SESSION['user_email']  . "</a></li>";
+                    ?>
+                </ul>
+
                 </div>
             </div>
           </div>

@@ -89,6 +89,12 @@
             margin-right: -1%;
         }
 
+	#controlpanel {
+		position: fixed;
+		top: 80% !important;
+		bottom: 1% !important;
+	}
+
         #main {
             position: relative;
             height: auto;   
@@ -130,12 +136,14 @@
          }
 
          #next, #back {
-            margin-top: 50px;
             margin-left: 1%
          }
 
          #user { display: none;}
 
+	button {
+		margin-top: 10px !important;
+	}
     </style>
 </head>
 <body>
@@ -163,13 +171,25 @@
                 <ul class="nav pull-right">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
+			<li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                        <li><a href="annotation.html" class="active">Grade</a></li>
+                                        <li><a href="upload_file.html">Upload</a></li>
+                                        <li><a href="manageClass.php">Manage Classes</a></li>
+                                        <li><a href="SelectTest.php">Manage Tests</a></li>
+                                	<li><a href="results.php">Results</a></li>
+				</ul>
+                        </li>
+		
+			<!--
                     <li><a href="#" class="active">Grade</a></li>
                     <li><a href="upload_file.html">Upload</a></li>
 		    <li><a href="manageClass.php">Manage Classes</a></li>
                     <li><a href="SelectTest.php">Manage Tests</a></li>
-
+			-->
                     <?php
-                        echo "<li><a class=\"btn-header\" href=\"sign-up.html\">Signed in as: " . $_SESSION['user_email']  . "</a></li>";
+                        echo "<li><a class=\"btn-header\" href=\"process.php\">Signed in as: " . $_SESSION['user_email']  . "</a></li>";
                     ?>
                 </ul>
             </div>
@@ -255,6 +275,7 @@
 			<br />
                     </ul>
 
+			<!--
                     <button id="back" class="btn" type="submit"><i class="icon-chevron-left"></i></button>
                     <button id="next" class="btn" type="submit"><i class="icon-chevron-right"></i></button>
 
@@ -262,6 +283,7 @@
 
 		    <button id="undo" class="btn" type="submit"><i class="icon-arrow-left"></i></button>
                     <button id="redo" class="btn" type="submit"><i class="icon-arrow-right"></i></button>
+			-->
                 </div>
             </div>
 
@@ -333,6 +355,30 @@
             </div>
         </div>
     </footer> -->
+
+	<div id="controlpanel" class="span4">
+	<ul class="nav nav-list">
+		<li class="nav-header">Control Panel</li>
+		<li>
+			<button id="back" class="btn" type="submit"><i class="icon-chevron-left"></i>Back</button>
+                    	<button id="next" class="btn" type="submit"><i class="icon-chevron-right"></i>Next</button>
+                    	<button style="float: right" id="showside" class="btn" type="submit"><i class="icon-chevron-right"></i>Input Tab</button>
+		</li>
+		<li>
+                    	<button id="undo" class="btn" type="submit"><i class="icon-arrow-left"></i>Undo</button>
+                    	<button id="redo" class="btn" type="submit"><i class="icon-arrow-right"></i>Redo</button>
+		</li>
+		<li>
+			<button id="erase" class="btn btn-inverse" type="submit"><i class="icon-remove icon-white"></i></button>
+			<button id="green" class="btn btn-success" type="submit"><i class="icon-tint icon-white"></i></button>
+			<button id="blue" class="btn btn-primary" type="submit"><i class="icon-tint icon-white"></i></button>
+			<button id="red" class="btn btn-danger" type="submit"><i class="icon-tint icon-white"></i></button>
+			<button id="black" class="btn btn-inverse" type="submit"><i class="icon-tint icon-white"></i></button>
+			<button id="clear" class="btn" type="submit"><i class="icon-ban-circle"></i></button>
+		</li>
+	</ul>
+	</div>
+
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/theme.js"></script>

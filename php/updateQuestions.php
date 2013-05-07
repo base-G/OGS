@@ -14,7 +14,7 @@
 		$tmp = explode(":", $info[$i]);
 		
 		mysqli_query($con,"INSERT INTO Results (StudentID, ClassID, TestID, QuestionID, Points) 
-				VALUES (" . intval($tmp[0]) . ", " . intval($tmp[1]) . ", " . intval($tmp[2]) . ", " . intval($tmp[3]) . ", " . intval($tmp[4]) .")");
+				VALUES (" . intval($tmp[0]) . ", " . intval($tmp[1]) . ", " . intval($tmp[2]) . ", " . intval($tmp[3]) . ", " . intval($tmp[4]) .") ON DUPLICATE KEY UPDATE Points = " . intval($tmp[4]));
 
 	}
 

@@ -57,10 +57,24 @@
                     <ul class="nav pull-right">
                         <li><a href="process.php">Home</a></li>
                         <li><a href="about.html">About</a></li>
+			
+			<li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                        <li><a href="annotation.html" class="active">Grade</a></li>
+                                        <li><a href="upload_file.html">Upload</a></li>
+                                        <li><a href="manageClass.php">Manage Classes</a></li>
+                                        <li><a href="SelectTest.php">Manage Tests</a></li>
+					<li><a href="results.php">Results</a></li>
+                                </ul>
+                        </li>
+
+			<!--
                         <li><a href="annotation.html">Grade</a></li>
-                        <li><a href="#">Upload</a></li>
+                        <li><a href="upload_file.html">Upload</a></li>
 						<li><a href="manageClass.php">Manage Classes</a></li>
                         <li><a href="SelectTest.php">Manage Tests</a></li>
+			-->
                         <?php echo "<li><a href=\"#\">Sign in as: " . $_SESSION['user_email'] . "</a></li>"; ?>
 			<?php echo "<li><a href=\"" . $_SERVER['PHP_SELF'] . "?action=logout\">Logout</a></li>"; ?>
                     </ul>

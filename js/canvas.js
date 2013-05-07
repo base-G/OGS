@@ -7,6 +7,8 @@ var context = canvas.getContext('2d');
 var hiddenCanvas = document.getElementById('tmpCanvas');
 var hidden = hiddenCanvas.getContext('2d');
 
+var color = "#0000ff";
+
 var cur = 0;
 
 var histX = [];
@@ -67,6 +69,7 @@ $('#sketchpad').mouseup(function (e) {
 
 $('#sketchpad').mouseleave(function (e) {
     paint = false;
+    redraw();
 });
 
 canvas.addEventListener('touchstart', function (e) {
@@ -119,7 +122,7 @@ function addClick(x, y, dragging) {
 function redraw() {
     canvas.width = canvas.width; // Clears the canvas
 
-    context.strokeStyle = "#0000ff";
+    context.strokeStyle = color;
     context.lineJoin = "round";
     context.lineWidth = 5;
 
@@ -294,6 +297,7 @@ $("#next").click(function() {
         return;
     }
 
+	resetAnno();
     saveCanvas("plus");
     pageNum++;
     renderPage(pageNum);
@@ -301,6 +305,7 @@ $("#next").click(function() {
 
 $("#back").click(function() {
     if (pageNum >= 1) {
+	resetAnno();
         saveCanvas("minus");
         pageNum--;
     }
@@ -376,10 +381,21 @@ function saveScores() {
 	});
 }
 
+function resetAnno() {
+	clickX = [];
+	clickY = [];
+	clickDrag = [];
+
+	histX = [];
+	histY = [];
+	histDrag = [];
+}
+
 $(".testlink").click(function(event) {
+	resetAnno();
 	saveScores();
 
-	var info = $(".testlink").parent().attr('id');
+	var info = $(this).parent().attr('id');
 	var tmp = info.split(":");
 	var test_id = tmp[0];
 	var class_id = tmp[1];
@@ -436,3 +452,11 @@ function empty() {
 
     redraw();
 }
+
+$("#clear").click(function() { empty(); });
+
+$("#erase").click(function() { color = "#ffffff"; });
+$("#black").click(function() { color = "#000000"; });
+$("#red").click(function() { color = "#ff0000"; });
+$("#green").click(function() { color = "#00ff00"; });
+$("#blue").click(function() { color = "#0000ff"; });

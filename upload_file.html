@@ -17,8 +17,23 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+	<style>
+		#shield {
+			display: none;
+			opacity: 0.40;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			z-index: 1;
+			background-color: #000;
+		}
+	</style>
+
 </head>
 <body>
+	<div id="shield">
+	</div>
+
 	<?php
                 spl_autoload_register( function($class) {
                         include('classes/Login.class.php');
@@ -43,11 +58,18 @@
                     <ul class="nav pull-right">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
-                        <li><a href="annotation.html">Grade</a></li>
-                        <li><a href="#" class="active">Upload</a></li>
-			<li><a href="manageClass.php">Manage Classes</a></li>
-                        <li><a href="SelectTest.php">Manage Tests</a></li>
-                        <?php echo "<li><a href=\"#\">Sign in as: " . $_SESSION['user_email'] . "</a></li>"; ?>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+                        		<li><a href="annotation.html">Grade</a></li>
+                        		<li><a href="#" class="active">Upload</a></li>
+					<li><a href="manageClass.php">Manage Classes</a></li>
+                        		<li><a href="SelectTest.php">Manage Tests</a></li>
+					<li><a href="results.php">Results</a></li>
+				</ul>
+			</li>
+                        <?php echo "<li><a href=\"process.php\">Sign in as: " . $_SESSION['user_email'] . "</a></li>"; 
+			?>
                     </ul>
                 </div>
             </div>
@@ -133,6 +155,9 @@
                 </div>
             </div>
         </div>
+
+	<div class="span6">
+	</div>
 
         
         <footer id="footer">

@@ -20,11 +20,11 @@
   	$result = mysqli_query($con, "SELECT StudentID FROM studenttest WHERE ClassID = " . intval($id));
 
   	while ($row = mysqli_fetch_array($result)) {
-  		$student = mysqli_query($con, "SELECT Name FROM students WHERE StudentID = " . intval($row['StudentID']));
+  		$student = mysqli_query($con, "SELECT Name FROM Students WHERE StudentID = '" . $row['StudentID'] . "'");
   		$student = mysqli_fetch_array($student);
-    	$name = $student['Name'];
+    		$name = $student['Name'];
 
-        echo $name . " ";
+        	echo $name . " ";
     }
 
 
