@@ -11,6 +11,7 @@ var color = "#0000ff";
 
 var cur = 0;
 
+var colors = [];
 var histX = [];
 var histY = [];
 var histDrag = [];
@@ -117,6 +118,7 @@ function addClick(x, y, dragging) {
     clickX.push(x);
     clickY.push(y);
     clickDrag.push(dragging);
+	colors.push(color);
 }
 
 function redraw() {
@@ -127,6 +129,7 @@ function redraw() {
     context.lineWidth = 5;
 
     for (var i = 0; i < histX[cur]; i++) {
+	context.strokeStyle = colors[i];
         context.beginPath();
         if (clickDrag[i] && i) {
             context.moveTo(clickX[i - 1], clickY[i - 1]);
@@ -297,7 +300,6 @@ $("#next").click(function() {
         return;
     }
 
-	resetAnno();
     saveCanvas("plus");
     pageNum++;
     renderPage(pageNum);
@@ -305,7 +307,6 @@ $("#next").click(function() {
 
 $("#back").click(function() {
     if (pageNum >= 1) {
-	resetAnno();
         saveCanvas("minus");
         pageNum--;
     }
@@ -314,7 +315,7 @@ $("#back").click(function() {
 });
 
 function saveCanvas(plusMinus) {
-	var data = clickX + 'END' + clickY + 'END' + clickDrag;
+	var data = clickX + 'END' + clickY + 'END' + clickDrag + 'END' + colors;
 
     if (plusMinus == "plus") {
         var pageNext = pageNum + 1;
@@ -322,7 +323,6 @@ function saveCanvas(plusMinus) {
         var pageNext = pageNum - 1;
     }
 
-    empty();
     var res = "";
 
     $.ajax({ 
@@ -339,20 +339,26 @@ function saveCanvas(plusMinus) {
         
         success: function(output) {
                     	res = output;
-
+			empty();
         		arr = res.split('END');
+
+			console.log(arr);
 
 			var values = arr[0].split(',');
 			clickX = [];
-			clickX = values.slice(0);
+			clickX = values.slice(1);
 
 			values = arr[1].split(',');
                         clickY = [];
-			clickY = values.slice(0);
+			clickY = values.slice(1);
 
 			values = arr[2].split(',');
                         clickDrag = [];
-			clickDrag = values.slice(0);
+			clickDrag = values.slice(1);
+
+			values = arr[3].split(',');
+			colors = [];
+			colors = values.slice(1);
 
 			cur = 0;
 			histX[cur] = clickX.length;
@@ -368,7 +374,7 @@ function saveScores() {
 	data = [];
 	$(".question").each(function(index) {
 		var tmp = $(this).serializeArray();
-		data[index] = (this.id) + ":" + tmp[0].value;
+		data[index] = (this.id) + ":" + tmp[0].value + ":" + tmp[1].value;
 	});
 
 	$.ajax({
@@ -389,9 +395,12 @@ function resetAnno() {
 	histX = [];
 	histY = [];
 	histDrag = [];
+
+	colors= [];
 }
 
 $(".testlink").click(function(event) {
+	pageNum = 1;
 	resetAnno();
 	saveScores();
 
@@ -400,6 +409,47 @@ $(".testlink").click(function(event) {
 	var test_id = tmp[0];
 	var class_id = tmp[1];
 	var student_id = $(this).attr('class').split(' ')[1];
+
+	/*
+	$.ajax({
+        url: 'php/loadCanvas.php',
+        data: {
+            canvas: data,
+            page: pageNum,
+            _class: gClassID,
+            _test: gTestID,
+            _student: gStudentID,
+        },
+        type: 'post',
+
+        success: function(output) {
+                        res = output;
+                        empty();
+                        arr = res.split('END');
+
+                        var values = arr[0].split(',');
+                        clickX = [];
+                        clickX = values.slice(0);
+
+                        values = arr[1].split(',');
+                        clickY = [];
+                        clickY = values.slice(0);
+
+                        values = arr[2].split(',');
+                        clickDrag = [];
+                        clickDrag = values.slice(0);
+
+                        values = arr[3].split(',');
+                        colors = [];
+                        colors = values.slice(0);
+
+                        cur = 0;
+                        histX[cur] = clickX.length;
+                        histY[cur] = clickY.length;
+                        histDrag[cur] = clickDrag.length;
+                 },
+    });
+	*/
 
 	gTestID = test_id;
 	gClassID = class_id;
@@ -418,12 +468,13 @@ $(".testlink").click(function(event) {
 			var resTmp = output.split("\n");
 			var res = resTmp[0].split(" ");
 			var res2 = resTmp[1].split(" ");
+			var res3 = resTmp[2].split("***");
 			for (var i = 0; i < res.length - 1; i++) {
 				var tmp = res[i].split(":");
 				var tmp2 = res2[i].split(":");
 
-				var q2 = '<form id="' + student_id + ':' + class_id + ':' + test_id + ':' + tmp[0] + '" class="question"><fieldset><legend>Question '+(i+1)+'</legend><div class="input-append"><input class="span2" id="appendedInput" type="text" name="value" value="' + tmp2[1] + '"><span class="add-on">/' + tmp[1] + '</span></div><span class="help-block"></span></fieldset></form>';
-				$("#side2").append(q2);	
+				var q2 = '<form id="' + student_id + ':' + class_id + ':' + test_id + ':' + tmp[0] + '" class="question"><fieldset><legend>Question '+(i+1)+'</legend><div class="input-append"><input class="span2" id="appendedInput" type="text" name="value" value="' + tmp2[1] + '"><span class="add-on">/' + tmp[1] + '</span></div><span class="help-block"></span><textarea name="comments" rows="3">'+ res3[i] +'</textarea></fieldset></form>';
+				$("#side2").append(q2);
 			}
 		}
 	});
@@ -449,6 +500,12 @@ function empty() {
     clickX.length = 0;
     clickY.length = 0;
     clickDrag.length = 0;
+
+	histX = [];
+	histY = [];
+	histDrag = [];
+
+	colors = [];
 
     redraw();
 }

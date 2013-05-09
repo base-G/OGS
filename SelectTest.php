@@ -1,12 +1,12 @@
-	<!DOCTYPE html>
+CTYPE html>
 	<?php 
 		include("classes/Login.class.php");
-		
+
 		$theme = "";
 		$login = new Login();
 		$userid = NULL;
 		$testList = NULL;
-		
+
 		if( !( $login->isLoggedIn() ) )
 		{
 			header( 'Location: /process.php' );
@@ -15,33 +15,33 @@
 		{
 			$userid = $_SESSION['user_id'];	
 		}
-		
+
 		$testList = getTests( $userid );
-	
+
 		function getTests( $owner )
 		{
 			$return = NULL;
-			
+
 			$conn = mysql_connect("127.0.0.1", "root", "baseg") or die(mysql_error());
 			mysql_select_db("baseg") or die(mysql_error());
-	
+
 			// Select this test from the database and its information
 			$query_result = mysql_query("SELECT TestID, TestName FROM Tests WHERE CreatorID = ".$owner)
 				or die(mysql_error());  
-			
+
 			for( $i = 0; $i < mysql_num_rows($query_result); ++$i)
 			{
 				$row = mysql_fetch_array($query_result);
 				$return[$i] = $row; 
 			}
-			
+
 			mysql_close($conn);
-			
+
 			return $return;
 		}
-		
-		
-		
+
+
+
 	?>
 	
 	<html>
@@ -112,7 +112,7 @@
 										$test = $testList[$i];
 										echo '
 											<option value="'.$test['TestID'].'">'.$test['TestName'].'</option>';
-										
+
 									}
 								}
 								else 
@@ -172,7 +172,7 @@
 	                    </div>
 	                    <div class="row copyright">
 	                        <div class="span12">
-	                            Â© 2013 baseG. All rights reserved.
+	                            © 2013 baseG. All rights reserved.
 	                        </div>
 	                    </div>
 	                </div>            
@@ -185,3 +185,4 @@
 	    <script src="<?php echo $theme; ?>js/theme.js"></script>
 	</body>
 	</html>
+

@@ -1,14 +1,14 @@
-	<!DOCTYPE html>
+CTYPE html>
 	<?php 
 		include("classes/Login.class.php");
-		
+
 		$theme = "";
 		$login = new Login();
 		$userid = NULL;
 		$testInformation = NULL;
 		$classList = NULL;
 		$noTestFound = false;
-		
+
 		if( !( $login->isLoggedIn() ) )
 		{
 			header( 'Location: /process.php' );
@@ -17,15 +17,15 @@
 		{
 			$userid = $_SESSION['user_id'];	
 		}
-	
-		
-		
+
+
+
 		// Check if a test has been selected to be modified
 		if(isset($_GET['testID']))
 		{
 			// Resolve test ID and get test information
 			$testInformation = resolveTest( $_GET['testID'] );
-			
+
 			/*
 			 * If no test was found make the logged in user create a new test.
 			 * 
@@ -41,7 +41,7 @@
 				// Since no test information was found for a given test id, make sure the user is aware
 				// that they are creating a new test, when they may have wanted to modify a test.
 				$noTestFound = true;
-				
+
 				$testInformation['TestID'] = -1; 
 		 		$testInformation['TestName'] = "New Test";
 		 		$testInformation['ClassID'] = -1;
@@ -59,7 +59,7 @@
 		{
 			$classList = getClasses( $userid );	
 		}
-		
+
 		/*
 		 * Returns all classes that $owner has created/can assign tests to.
 		 * 
@@ -69,26 +69,26 @@
 		function getClasses( $owner )
 		{
 			$return = NULL;
-			
+
 			$conn = mysql_connect("127.0.0.1", "root", "baseg") or die(mysql_error());
 			mysql_select_db("baseg") or die(mysql_error());
-	
+
 			// Select this test from the database and its information
 			$query_result = mysql_query("SELECT ClassID, ClassName FROM Class WHERE CreatorID = ".$owner)
 				or die(mysql_error());  
-			
+
 			for( $i = 0; $i < mysql_num_rows($query_result); ++$i)
 			{
 				$row = mysql_fetch_array($query_result);
 				$return[$i] = $row; 
 			}
-			
+
 			mysql_close($conn);
-			
+
 			return $return;
 		}
-		
-		
+
+
 		/*
 		 * Given a testID, return all the information associatd with that test from the database.
 		 * 
@@ -108,32 +108,32 @@
 		function resolveTest( $testID )
 		{
 			$return = NULL;
-			
+
 			//connect to mysql database and fetch test information
 			$conn = mysql_connect("127.0.0.1", "root", "baseg") or die(mysql_error());
 			mysql_select_db("baseg") or die(mysql_error());
-	
+
 			// Select this test from the database and its information
 			$query_result = mysql_query("SELECT TestID, TestName, ClassID, ClassName, CreatorID FROM Tests WHERE TestID = ".$testID)
 				or die(mysql_error());  
-	
+
 			// If a test exists with the given test id
 			if( mysql_num_rows( $query_result ) > 0 )
 			{
 				$row = mysql_fetch_array( $query_result );
-				
+
 				// Store all of the test's metadata
 				$return['TestID'] = $row['TestID'];;
 				$return['TestName'] = $row['TestName'];
 				$return['ClassID'] = $row['ClassID'];
 				$return['ClassName'] = $row['ClassName'];
 				$return['CreatorID'] = $row['CreatorID'];
-				
+
 				// Select all the information about questions for this test.
 				$query_result = mysql_query( "SELECT QuestionID, PointVal, Question FROM Questions WHERE TestID = ".$return['TestID'] );
 				$questions = NULL;
 				$question  = NULL;
-				
+
 				// for each question that is associated with this test store the metadata about the question
 				for($i = 0; $i < mysql_num_rows($query_result); ++$i)
 				{
@@ -145,9 +145,9 @@
 				}
 				$return['Questions'] = $questions;
 			}
-			
+
 			mysql_close($conn);
-			
+
 			// return the test metadata and the metadata about the questiosn on this test.
 			return $return;
 		}
@@ -288,7 +288,7 @@
 					<?php
 						if($noTestFound)
 						{
-						
+
 						}
 					?>
 					<input type="hidden" name="TestID" value="<?php echo $testInformation['TestID']; ?>">
@@ -297,13 +297,13 @@
 		            <div class="span12"><input type="text" style="width: 100%;" name="TestName" value="<?php echo $testInformation['TestName'];?>"></div>
 					
 					<?php
-					
+
 					/* 
 					 * 
 		 				* $return['ClassID']
 		 				* $return['ClassName']
 					*/
-					
+
 					echo '<div class="span12">
 						<select name="class" style="width: 100%;">';
 					if(!($classList == NULL))
@@ -313,7 +313,7 @@
 							$class = $classList[$i];
 							echo '
 								<option value="'.$class['ClassID'].'">'.$class['ClassName'].'</option>';
-							
+
 						}
 					}
 					else 
@@ -350,7 +350,7 @@
 												echo '<input type="text" name="questionValue'.$i.'" value="'.$question['PointVal'].'" style="width: 100%;">';
 												echo '</div>';
 		                                    echo '</div>';
-											
+
 		                            }
 		                    }
 		                    else
@@ -362,7 +362,7 @@
 		                            </div>';
 									echo '<input type="hidden" id="numQuestions" name="numQuestions" value="0">';
 		                    }
-		
+
 						?>
 							</div>
 						</div>
@@ -429,7 +429,7 @@
 	                    </div>
 	                    <div class="row copyright">
 	                        <div class="span12">
-	                            Â© 2013 baseG. All rights reserved.
+	                            © 2013 baseG. All rights reserved.
 	                        </div>
 	                    </div>
 	                </div>            
@@ -442,3 +442,4 @@
 	    <script src="<?php echo $theme; ?>js/theme.js"></script>
 	</body>
 	</html>
+

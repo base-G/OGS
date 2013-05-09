@@ -3,8 +3,7 @@ function updateTests(value, user) {
     .find('option')
     .remove()
     .end()
-    .append('<option>Select Test</option>')
-    ;
+    .append('<option>Select Test</option>');
 
 	var _class = value;
 	var _user = user;
@@ -62,6 +61,33 @@ function updateTests2(value, user) {
     });
 }
 
+function updateTests3(value, user) {
+	$("#results").empty();
+	$("#tests")
+	.find("option")
+	.remove()
+	.end()
+	.append("<option> Select Test</option> <option> Create New Test</option>");
+	var _class = value;
+	var _user = user;
+	var res = "";
+	
+	$.ajax({
+		url: 'php/loadTestsProper.php',
+		data: {
+			_class: _class,
+			_user: _user
+		},
+		type: 'GET',
+		
+		success: function(output) {
+				var str = output.split(" ");
+				for ( var i = 0; i < str.length - 1; ++i ) {
+					$("#tests").append("<option>" + str[i] + "</option>");
+				}
+		}
+	});
+}
 
 $("#formSub").click(function() {
 	$("#shield").fadeIn(1000);
