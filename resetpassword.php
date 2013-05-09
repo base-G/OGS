@@ -61,8 +61,8 @@ while($row = mysql_fetch_array($result))
             </a>
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="about.php">About</a></li>
                     <li><a href="process.php">Sign in</a></li>
                     <li><a href="process.php#signup">Sign up</a></li>
                   

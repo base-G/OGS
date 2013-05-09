@@ -58,14 +58,14 @@
                 </a>
                 <div class="nav-collapse collapse">
 			<ul class="nav pull-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="about.php">About</a></li>
 
                         <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                        <li><a href="annotation.html">Grade</a></li>
-                                        <li><a href="upload_file.html">Upload</a></li>
+                                        <li><a href="annotation.php">Grade</a></li>
+                                        <li><a href="upload_file.php">Upload</a></li>
                                         <li><a href="manageClass.php" class="active">Manage Classes</a></li>
                                         <li><a href="SelectTest.php">Manage Tests</a></li>
 					<li><a href="results.php">Results</a></li>

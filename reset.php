@@ -1,6 +1,6 @@
 
 			<?php
-include("/var/www/include/send.php");
+include("include/send.php");
 
 if(isset($_POST["reset"]) && !empty($_POST['user_email'])) {
 

@@ -34,13 +34,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="../index.html">
+            <a class="brand" href="../index.php">
                 <strong>base-G</strong>
             </a>
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
-                    <li><a href="../index.html" class="active">Home</a></li>
-                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../index.php" class="active">Home</a></li>
+                    <li><a href="../about.php">About</a></li>
                     <li><a href="process.php">Sign in</a></li>
                     <li><a href="process.php#signup">Sign up</a></li>
 
