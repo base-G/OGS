@@ -1,15 +1,10 @@
-<?php
-
-// import the config file
-include_once("config.php");
-
-?>
 <!DOCTYPE html>
 	<?php 
-		include("classes/Login.class.php");
+		// import the config file
+		include_once(__DIR__."/config.php");
+		include(__DIR__."/classes/Login.class.php");
 
-		$theme = "";
-		$login = new Login();
+		$login = new Login($dbHost, $dbUser, $dbPass, $dbName);
 		$userid = NULL;
 		$testList = NULL;
 
@@ -28,8 +23,8 @@ include_once("config.php");
 		{
 			$return = NULL;
 
-			$conn = mysql_connect("127.0.0.1", "root", "baseg") or die(mysql_error());
-			mysql_select_db("baseg") or die(mysql_error());
+			$conn = mysql_connect($GLOBALS['dbHost'], $GLOBALS['dbUser'], $GLOBALS['dbPass']) or die(mysql_error());
+			mysql_select_db($GLOBALS['dbName']) or die(mysql_error());
 
 			// Select this test from the database and its information
 			$query_result = mysql_query("SELECT TestID, TestName FROM Tests WHERE CreatorID = ".$owner)
@@ -57,10 +52,10 @@ include_once("config.php");
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    
 	    <!-- Styles -->
-	    <link href="<?php echo $theme; ?>css/bootstrap.css" rel="stylesheet">
-	    <link rel="stylesheet" type="text/css" href="<?php echo $theme; ?>css/theme.css">
+	    <link href="<?php echo $baseURL.$theme; ?>css/bootstrap.css" rel="stylesheet">
+	    <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/theme.css">
 	    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-	    <link rel="stylesheet" href="<?php echo $theme; ?>css/create_manage_test.css" type="text/css" media="screen" />
+	    <link rel="stylesheet" href="<?php echo $baseURL.$theme; ?>css/create_manage_test.css" type="text/css" media="screen" />
 	
 	    <!--[if lt IE 9]>
 	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -109,7 +104,7 @@ include_once("config.php");
 	    <div class="row-fluid">
 	        <div class="span8 offset2">
 	        	<div class="row-fluid">
-	        		<form action="CreateOrManageTest.php" method="get">
+	        		<form action="SelectTest.php" method="get">
 	        		<div class="span12">
 	        			
 			        		<?php 
@@ -192,8 +187,8 @@ include_once("config.php");
 	    </footer>
 	
 	    <script src="http://code.jquery.com/jquery-latest.js"></script>
-	    <script src="<?php echo $theme; ?>js/bootstrap.min.js"></script>
-	    <script src="<?php echo $theme; ?>js/theme.js"></script>
+	    <script src="<?php echo $baseURL.$theme; ?>js/bootstrap.min.js"></script>
+	    <script src="<?php echo $baseURL.$theme; ?>js/theme.js"></script>
 	</body>
 	</html>
 

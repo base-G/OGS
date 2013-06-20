@@ -1,14 +1,11 @@
-<?php
 
-// import the config file
-include_once("config.php");
-
-?>
 	<!DOCTYPE html>
 	<?php 
-		include("classes/Login.class.php");
+		// import the config file
+		include_once(__DIR__."/config.php");
+		include(__DIR__."/classes/Login.class.php");
 		
-		$login = new Login();
+		$login = new Login($dbHost, $dbUser, $dbPass, $dbName);
 		$userid = NULL;
 		$classList = NULL;
 		
@@ -106,7 +103,7 @@ include_once("config.php");
 	    <div class="row-fluid">
 	        <div class="span8 offset2">
 	        	<div class="row-fluid">
-	        		<form action="CreateOrManageClass.php" method="get">
+	        		<form action="manageClass.php" method="get">
 	        		<div class="span12">
 	        			
 			        		<?php 

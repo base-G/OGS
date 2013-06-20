@@ -1,7 +1,7 @@
 <?php
 
 // import the config file
-include_once("config.php");
+include_once(__DIR__."/config.php");
 
 ?>
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ include_once("config.php");
                         include('classes/Login.class.php');
                 });
 
-                $login = new Login();
+                $login = new Login($dbHost, $dbUser, $dbPass, $dbName);
                 echo "<div id=\"user\">" . $_SESSION['user_email'] . "</div>";
         ?>
 
@@ -46,23 +46,35 @@ include_once("config.php");
                 	<strong>base-G</strong>
             	</a>
             	<div class="nav-collapse collapse">
-                	<ul class="nav pull-right">
-                    	<li><a href="index.php">Home</a></li>
-                    	<li><a href="about.php" class="active">About</a></li>
-						<li class="dropdown">
-                        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-	                            <li><a href="annotation.php">Grade</a></li>
-	                            <li><a href="upload_file.php">Upload</a></li>
-	                            <li><a href="CreateOrManageClass.php">Manage Classes</a></li>
-	                            <li><a href="SelectTest.php">Manage Tests</a></li>
-	                    		<li><a href="results.php">Results</a></li>
-							</ul>
-                    	</li>
-	                    <?php
-	                        echo "<li><a class=\"btn-header\" href=\"process.php\">Signed in as: " . $_SESSION['user_email']  . "</a></li>";
-	                    ?>
-                	</ul>
+            		<?php 
+	            		if( ( $login->isLoggedIn() ) )
+						{
+							echo '<ul class="nav pull-right">
+		                    	<li><a href="index.php">Home</a></li>
+		                    	<li><a href="about.php" class="active">About</a></li>
+								<li class="dropdown">
+		                        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <b class="caret"></b></a>
+		                            <ul class="dropdown-menu">
+			                            <li><a href="annotation.php">Grade</a></li>
+			                            <li><a href="upload_file.php">Upload</a></li>
+			                            <li><a href="manageClass.php">Manage Classes</a></li>
+			                            <li><a href="SelectTest.php">Manage Tests</a></li>
+			                    		<li><a href="results.php">Results</a></li>
+									</ul>
+		                    	</li><li><a class=\"btn-header\" href=\"process.php\">Signed in as: ' . $_SESSION['user_email']  . '</a></li>
+		                	</ul>';
+						}
+						else
+						{
+							echo '<ul class="nav pull-right">
+				                    <li><a href="index.php">Home</a></li>
+				                    <li><a href="about.php">About</a></li>
+				                    <li><a href="process.php#signup">Sign up</a></li>
+				                    <li><a href="process.php">Sign in</a></li>
+				                </ul>';
+						}
+					?>
+                	
             	</div>
         	</div>
       	</div>
