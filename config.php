@@ -8,6 +8,6 @@ $dbUser = "root";
 $dbPass = "baseg";
 $dbName = "baseg";
 
-$theme  = "themes/default/"
+$theme  = "themes/default/";
 
 ?>
