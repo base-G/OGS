@@ -33,7 +33,7 @@
                         include('../../classes/Login.class.php');
                 });
 
-                $login = new Login();
+                $login = new Login($dbHost, $dbUser, $dbPass, $dbName);
 
 				$con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
                 $user = $_SESSION['user_email'];
@@ -64,8 +64,8 @@
 			<li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                        <li><a href="annotation.html" class="active">Grade</a></li>
-                                        <li><a href="upload_file.html">Upload</a></li>
+                                        <li><a href="annotation.php" class="active">Grade</a></li>
+                                        <li><a href="upload_file.php">Upload</a></li>
                                         <li><a href="manageClass.php">Manage Classes</a></li>
                                         <li><a href="SelectTest.php">Manage Tests</a></li>
 					<li><a href="results.php">Results</a></li>
@@ -73,8 +73,8 @@
                         </li>
 
 			<!--
-                        <li><a href="annotation.html">Grade</a></li>
-                        <li><a href="upload_file.html">Upload</a></li>
+                        <li><a href="annotation.php">Grade</a></li>
+                        <li><a href="upload_file.php">Upload</a></li>
 						<li><a href="manageClass.php">Manage Classes</a></li>
                         <li><a href="SelectTest.php">Manage Tests</a></li>
 			-->
