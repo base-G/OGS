@@ -1,10 +1,12 @@
 <?php
+	// import the config file
+	include_once("config.php");
 
 # Set the Class and Test variables.
 $myclass = $_POST['myclass'];
 $mytest  = $_POST['mytest'];
 
-$con = mysqli_connect("localhost", "root", "baseg", "baseg");
+$con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
 if (mysqli_connect_errno($con)) {
 	echo "Failed to connect to MySQL: " . mysqli_connect_error();

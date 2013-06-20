@@ -1,3 +1,9 @@
+<?php
+
+// import the config file
+include_once("config.php");
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,11 +13,11 @@
 	
     <!-- Styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/theme.css">
-    <link rel="stylesheet" href="css/index.css" type="text/css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/theme.css">
+    <link rel="stylesheet" href="<?php echo $baseURL.$theme; ?>css/index.css" type="text/css" media="screen" />
 
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="css/lib/animate.css" media="screen, projection">    
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/lib/animate.css" media="screen, projection">    
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -82,9 +88,9 @@
             For the backgrounds, you can combine from the bgs folder :D
         -->
        
-        <article class="slide" id="responsive" style="background: url('img/backgrounds/indigo.jpg') repeat-x top center;">
-            <img class="asset left-472 sp600 t120 z3" src="img/grading.png" />
-            <img class="asset left-190 sp500 t120 z2" src="img/upload.png" />
+        <article class="slide" id="responsive" style="background: url('<?php echo $baseURL.$theme; ?>img/backgrounds/indigo.jpg') repeat-x top center;">
+            <img class="asset left-472 sp600 t120 z3" src="<?php echo $baseURL.$theme; ?>img/grading.png" />
+            <img class="asset left-190 sp500 t120 z2" src="<?php echo $baseURL.$theme; ?>img/upload.png" />
             <div class="info">
                 <h2>
                      <strong>UPLOAD & GRADE</strong>
@@ -92,9 +98,9 @@
                 </h2>                
             </div>
         </article>        
-        <article class="slide" id="responsive" style="background: url('img/backgrounds/indigo.jpg') repeat-x top center;">
-            <img class="asset left-472 sp600 t120 z3" src="img/grading.png" />
-            <img class="asset left-190 sp500 t120 z2" src="img/upload.png" />
+        <article class="slide" id="responsive" style="background: url('<?php echo $baseURL.$theme; ?>img/backgrounds/indigo.jpg') repeat-x top center;">
+            <img class="asset left-472 sp600 t120 z3" src="<?php echo $baseURL.$theme; ?>img/grading.png" />
+            <img class="asset left-190 sp500 t120 z2" src="<?php echo $baseURL.$theme; ?>img/upload.png" />
             <div class="info">
                 <h2>
                      <strong>UPLOAD & GRADE</strong>
@@ -102,9 +108,9 @@
                 </h2>                
             </div>
         </article>        
-        <article class="slide" id="responsive" style="background: url('img/backgrounds/indigo.jpg') repeat-x top center;">
-            <img class="asset left-472 sp600 t120 z3" src="img/grading.png" />
-            <img class="asset left-190 sp500 t120 z2" src="img/upload.png" />
+        <article class="slide" id="responsive" style="background: url('<?php echo $baseURL.$theme; ?>img/backgrounds/indigo.jpg') repeat-x top center;">
+            <img class="asset left-472 sp600 t120 z3" src="<?php echo $baseURL.$theme; ?>img/grading.png" />
+            <img class="asset left-190 sp500 t120 z2" src="<?php echo $baseURL.$theme; ?>img/upload.png" />
             <div class="info">
                 <h2>
                      <strong>UPLOAD & GRADE</strong>
@@ -112,9 +118,9 @@
                 </h2>                
             </div>
         </article>        
-        <article class="slide" id="responsive" style="background: url('img/backgrounds/indigo.jpg') repeat-x top center;">
-            <img class="asset left-472 sp600 t120 z3" src="img/grading.png" />
-            <img class="asset left-190 sp500 t120 z2" src="img/upload.png" />
+        <article class="slide" id="responsive" style="background: url('<?php echo $baseURL.$theme; ?>img/backgrounds/indigo.jpg') repeat-x top center;">
+            <img class="asset left-472 sp600 t120 z3" src="<?php echo $baseURL.$theme; ?>img/grading.png" />
+            <img class="asset left-190 sp500 t120 z2" src="<?php echo $baseURL.$theme; ?>img/upload.png" />
             <div class="info">
                 <h2>
                      <strong>UPLOAD & GRADE</strong>
@@ -133,11 +139,11 @@
             </div> 
             <div class="row feature">
                 <div class="span6">
-                    <img src="img/showcase1.png" />
+                    <img src="<?php echo $baseURL.$theme; ?>img/showcase1.png" />
                 </div>
                 <div class="span6 info">
                     <h3>
-                        <img src="img/features-ico1.png" />
+                        <img src="<?php echo $baseURL.$theme; ?>img/features-ico1.png" />
                         Beautiful on all devices
                     </h3>
                     <p>
@@ -148,7 +154,7 @@
             <div class="row feature ss">
                 <div class="span6 info">
                     <h3>
-                        <img src="img/features-ico2.png" />
+                        <img src="<?php echo $baseURL.$theme; ?>img/features-ico2.png" />
                         Fast Uploading
                     </h3>
                     <p>
@@ -157,16 +163,16 @@
                     </p>
                 </div>
                 <div class="span6">
-                    <img src="img/upload2.png" class="pull-right" />
+                    <img src="<?php echo $baseURL.$theme; ?>img/upload2.png" class="pull-right" />
                 </div>
             </div>
             <div class="row feature ss">
                 <div class="span6">
-                    <img src="img/reportcard.gif" />
+                    <img src="<?php echo $baseURL.$theme; ?>img/reportcard.gif" />
                 </div>
                 <div class="span6 info">
                     <h3>
-                        <img src="img/features-ico3.png" />
+                        <img src="<?php echo $baseURL.$theme; ?>img/features-ico3.png" />
                        Easy grading
                     </h3>
                     <p>
@@ -180,7 +186,7 @@
 
                <div class="span6 info">
                     <h3>
-                        <img src="img/features-ico3.png" />
+                        <img src="<?php echo $baseURL.$theme; ?>img/features-ico3.png" />
                        Custom comments
                     </h3>
                     <p>
@@ -188,7 +194,7 @@
                     </p>
                 </div>
                 <div class="span6">
-                    <img src="img/cloud.png" class="pull-right" />
+                    <img src="<?php echo $baseURL.$theme; ?>img/cloud.png" class="pull-right" />
                 </div>
                 </div>
         </div>
@@ -232,7 +238,7 @@
                 <div class="span4 pro">
                     <div class="plan">
                         <div class="wrapper">
-                            <img class="ribbon" src="img/badge.png">
+                            <img class="ribbon" src="<?php echo $baseURL.$theme; ?>img/badge.png">
                             <h3>Teacher</h3>
                             <div class="price">
                                 <span class="dollar">$</span> 
@@ -332,10 +338,10 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/theme.js"></script>
+  		<script src="http://code.jquery.com/jquery-latest.js"></script>
+	    <script src="<?php echo $baseURL.$theme; ?>js/bootstrap.min.js"></script>
+	    <script src="<?php echo $baseURL.$theme; ?>js/theme.js"></script>
 
-    <script type="text/javascript" src="js/index-slider.js"></script>	
+    <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/index-slider.js"></script>	
 </body>
 </html>

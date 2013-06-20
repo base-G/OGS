@@ -1,4 +1,10 @@
-CTYPE html>
+<?php
+
+// import the config file
+include_once("config.php");
+
+?>
+<!DOCTYPE html>
 	<?php 
 		include("classes/Login.class.php");
 
@@ -75,17 +81,22 @@ CTYPE html>
             </a>
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="annotation.html">Grade</a></li>
-                    <li><a href="upload_file.html">Upload</a></li>
-                    <li><a href="manageClass.php">Manage Classes</a></li>
-                    <li><a href="SelectTest.php" class="active">Manage Tests</a></li>
-
-                    <?php
-                        echo "<li><a class=\"btn-header\" href=\"sign-up.html\">Signed in as: " . $_SESSION['user_email']  . "</a></li>";
-                    ?>
-                </ul>
+                    	<li><a href="index.php">Home</a></li>
+                    	<li><a href="about.php" class="active">About</a></li>
+						<li class="dropdown">
+                        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+	                            <li><a href="annotation.php">Grade</a></li>
+	                            <li><a href="upload_file.php">Upload</a></li>
+	                            <li><a href="manageClass.php">Manage Classes</a></li>
+	                            <li><a href="SelectTest.php">Manage Tests</a></li>
+	                    		<li><a href="results.php">Results</a></li>
+							</ul>
+                    	</li>
+	                    <?php
+	                        echo "<li><a class=\"btn-header\" href=\"process.php\">Signed in as: " . $_SESSION['user_email']  . "</a></li>";
+	                    ?>
+                	</ul>
             </div>
         </div>
       </div>
@@ -172,7 +183,7 @@ CTYPE html>
 	                    </div>
 	                    <div class="row copyright">
 	                        <div class="span12">
-	                            © 2013 baseG. All rights reserved.
+	                            ï¿½ 2013 baseG. All rights reserved.
 	                        </div>
 	                    </div>
 	                </div>            

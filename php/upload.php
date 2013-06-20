@@ -1,5 +1,8 @@
 <?php
 
+	// import the config file
+	include_once("config.php");
+
 # include parseCSV class.
 require_once('parsecsv.lib.php');
 
@@ -102,7 +105,7 @@ foreach ($rev as $entry) {
                		exec($com, $out);
 
 			# Add the location of the students test to the database.
-			$con = mysqli_connect("localhost","root","baseg","baseg");
+			$con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
 			if (mysqli_connect_errno($con)) {
   				echo "error";
@@ -134,7 +137,7 @@ foreach ($rev as $entry) {
 
 #exec("rm ../upload/tmp.*");
 
-#$con = mysqli_connect("localhost","root","baseg","baseg");
+#$con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
 #if (mysqli_connect_errno($con)) {
   #	echo "Failed to connect to MySQL: " . mysqli_connect_error();

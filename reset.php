@@ -1,4 +1,9 @@
+<?php
 
+// import the config file
+include_once("config.php");
+
+?>
 			<?php
 include("include/send.php");
 
@@ -8,8 +13,8 @@ if(isset($_POST["reset"]) && !empty($_POST['user_email'])) {
 				
 	
 
-		mysql_connect("localhost", "root", "baseg") or die(mysql_error()); 
-		mysql_select_db("baseg") or die(mysql_error()); 
+		mysql_connect($dbHost, $dbUser, $dbPass) or die(mysql_error()); 
+		mysql_select_db($dbName) or die(mysql_error()); 
 		
 		mysql_query("UPDATE Accounts SET resetkey=".$resetKey." WHERE user_email='".$_POST['user_email']."'");
 		
@@ -37,9 +42,9 @@ if(isset($_POST["reset"]) && !empty($_POST['user_email'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
     <!-- Styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/theme.css">
-    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link href="<?php echo $baseURL.$theme; ?>css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/theme.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/reset.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 
     <!--[if lt IE 9]>
@@ -104,8 +109,8 @@ if(isset($_POST["reset"]) && !empty($_POST['user_email'])) {
             <div class="row info">
                 <div class="span6 residence">
                     <ul>
-                        <li>2301 East Lamar Blvd. Suite 140. City, Arlington.</li>
-                        <li>United States, Zip Code TX 76006.</li>
+                        <li>3725 Norriswood Avenue</li>
+                        <li>Memphis, TN 38152</li>
                     </ul>
                 </div>
                 <div class="span5 touch">
@@ -160,7 +165,7 @@ if(isset($_POST["reset"]) && !empty($_POST['user_email'])) {
     </footer>
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/theme.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>js/theme.js"></script>
 </body>
 </html>

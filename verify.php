@@ -1,4 +1,9 @@
+<?php
 
+// import the config file
+include_once("config.php");
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,12 +13,12 @@
 	
     <!-- Styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/theme.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/theme.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="css/lib/animate.css" media="screen, projection">
-    <link rel="stylesheet" href="../css/coming-soon.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="../css/index.css" type="text/css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/lib/animate.css" media="screen, projection">
+    <link rel="stylesheet" href="<?php echo $baseURL.$theme; ?>/css/coming-soon.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="<?php echo $baseURL.$theme; ?>css/index.css" type="text/css" media="screen" />
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -39,8 +44,8 @@
             </a>
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
-                    <li><a href="../index.php" class="active">Home</a></li>
-                    <li><a href="../about.php">About</a></li>
+                    <li><a href="index.php" class="active">Home</a></li>
+                    <li><a href="about.php">About</a></li>
                     <li><a href="process.php">Sign in</a></li>
                     <li><a href="process.php#signup">Sign up</a></li>
 
@@ -61,8 +66,8 @@
                     <p>
                         
 <?php
-mysql_connect("localhost","root","baseg");
-@mysql_select_db("baseg");
+mysql_connect($dbHost, $dbUser, $dbPass);
+@mysql_select_db($dbName);
 
 $queryString = $_SERVER['QUERY_STRING'];
 $query = "SELECT * FROM Accounts"; 
@@ -77,7 +82,7 @@ while($row = mysql_fetch_array($result))
 		
 		
 		mysql_query("UPDATE Accounts SET user_activated=1
-		WHERE activationkey='$queryString'");
+		WHERE activationkey='".$queryString."'");
 		
 	}
 }
@@ -162,8 +167,8 @@ while($row = mysql_fetch_array($result))
     </footer>
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/theme.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>/js/bootstrap.min.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>/js/theme.js"></script>
 
     <script>
         window.setInterval(function(){

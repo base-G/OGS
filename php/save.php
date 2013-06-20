@@ -1,4 +1,7 @@
 <?php
+	// import the config file
+	include_once("config.php");
+
 
 	if(isset($_POST['canvas']) && !empty($_POST['canvas'])) {
 		$canvas = $_POST['canvas'];
@@ -24,7 +27,7 @@
 		$next = $_POST['next'];
 	}
 	
-	$con = mysqli_connect("localhost","root","baseg","baseg");
+	$con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
 	if (mysqli_connect_errno($con)) {
    		echo "Failed to connect to MySQL: " . mysqli_connect_error();

@@ -1,3 +1,9 @@
+<?php
+
+// import the config file
+include_once("config.php");
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,13 +12,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
     <!-- Styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/jasny-bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/theme.css">
+    <link href="<?php echo $baseURL.$theme; ?>css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo $baseURL.$theme; ?>css/jasny-bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/theme.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="css/lib/animate.css" media="screen, projection">
-    <link rel="stylesheet" href="css/results.css" type="text/css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/lib/animate.css" media="screen, projection">
+    <link rel="stylesheet" href="<?php echo $baseURL.$theme; ?>css/results.css" type="text/css" media="screen" />
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -56,21 +62,22 @@
                 </a>
                 <div class="nav-collapse collapse">
                     <ul class="nav pull-right">
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="about.php">About</a></li>
-			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-                        		<li><a href="annotation.php">Grade</a></li>
-                        		<li><a href="upload_file.php" class="active">Upload</a></li>
-					<li><a href="manageClass.php">Manage Classes</a></li>
-                        		<li><a href="SelectTest.php">Manage Tests</a></li>
-					<li><a href="results.php">Results</a></li>
-				</ul>
-			</li>
-                        <?php echo "<li><a href=\"process.php\">Sign in as: " . $_SESSION['user_email'] . "</a></li>"; 
-			?>
-                    </ul>
+                    	<li><a href="index.php">Home</a></li>
+                    	<li><a href="about.php" class="active">About</a></li>
+						<li class="dropdown">
+                        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+	                            <li><a href="annotation.php">Grade</a></li>
+	                            <li><a href="upload_file.php">Upload</a></li>
+	                            <li><a href="manageClass.php">Manage Classes</a></li>
+	                            <li><a href="SelectTest.php">Manage Tests</a></li>
+	                    		<li><a href="results.php">Results</a></li>
+							</ul>
+                    	</li>
+	                    <?php
+	                        echo "<li><a class=\"btn-header\" href=\"process.php\">Signed in as: " . $_SESSION['user_email']  . "</a></li>";
+	                    ?>
+                	</ul>
                 </div>
             </div>
           </div>
@@ -100,7 +107,7 @@
                         <form id="resultsForm" action="php/results.php" method="post" enctype="multipart/form-data">
                                 <?php
                                     // Connect to the database.
-                                    $con = mysqli_connect("localhost", "root", "baseg", "baseg");
+                                    $con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
                                     	if (mysqli_connect_errno($con)) {
   				        	echo "Failed to connect to MySQL: " . mysqli_connect_error();
      		 			} 
@@ -195,10 +202,10 @@
     </div>
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/jasny-bootstrap.js"></script>
-    <script src="js/theme.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>js/bootstrap.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>js/jasny-bootstrap.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>js/theme.js"></script>
 	<script src="http://malsup.github.com/jquery.form.js"></script> 
-    <script src="js/updateData.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>js/updateData.js"></script>
 </body>
 </html>
