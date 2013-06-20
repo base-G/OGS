@@ -1,7 +1,7 @@
 <?php
 
 	// import the config file
-	include_once("config.php");
+	include_once("../config.php");
 
 	 // Connect to the database
 	 $conn = mysql_connect($dbHost, $dbUser, $dbPass) or die(mysql_error());

@@ -1,6 +1,6 @@
 <?php
 	// import the config file
-	include_once("config.php");
+	include_once("../config.php");
 
 # Set the Class and Test variables.
 $myclass = $_POST['myclass'];
