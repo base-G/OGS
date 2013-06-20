@@ -1,7 +1,7 @@
 <?php
 
 // import the config file
-include_once("config.php");
+include_once(__DIR__."/config.php");
 
 ?>
 <!DOCTYPE html>
@@ -39,7 +39,7 @@ include_once("config.php");
                         include('classes/Login.class.php');
                 });
 
-                $login = new Login();
+                $login = new Login($dbHost, $dbUser, $dbPass, $dbName);
 
 				$con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
                 $user = $_SESSION['user_email'];
