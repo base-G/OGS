@@ -1,5 +1,5 @@
 <?php
-include("/var/www/include/send.php");
+include(__DIR__."/include/send.php");
 
 
 /**
