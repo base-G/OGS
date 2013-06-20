@@ -57,7 +57,7 @@ include_once("config.php");
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="brand" href="index.html">
+                <a class="brand" href="index.php">
                     <strong>base-G</strong>
                 </a>
                 <div class="nav-collapse collapse">

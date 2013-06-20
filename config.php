@@ -5,7 +5,7 @@ $baseURL = "http://projects.codemelody.com/OGS/";
 
 $dbHost = "127.0.0.1";
 $dbUser = "root";
-$dbPass = "baseg";
+$dbPass = "";
 $dbName = "baseg";
 
 $theme  = "themes/default/"

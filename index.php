@@ -12,7 +12,7 @@ include_once("config.php");
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
     <!-- Styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo $baseURL.$theme; ?>css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/theme.css">
     <link rel="stylesheet" href="<?php echo $baseURL.$theme; ?>css/index.css" type="text/css" media="screen" />
 
@@ -32,7 +32,7 @@ include_once("config.php");
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="index.html">
+            <a class="brand" href="index.php">
                 <strong>base-G</strong>
             </a>
             <div class="nav-collapse collapse">
