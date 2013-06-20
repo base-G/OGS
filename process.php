@@ -1,5 +1,11 @@
 <?php
 
+// import the config file
+include_once("config.php");
+
+?>
+<?php
+
 spl_autoload_register( function($class) {
     include('classes/' . $class . '.class.php');
 });

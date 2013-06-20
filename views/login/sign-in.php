@@ -1,3 +1,9 @@
+<?php
+
+// import the config file
+include_once("config.php");
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,12 +12,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
     <!-- Styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/theme.css">
+    <link href="<?php echo $baseURL.$theme; ?>css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/theme.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="css/lib/animate.css" media="screen, projection">
-    <link rel="stylesheet" href="css/sign-in.css" type="text/css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/lib/animate.css" media="screen, projection">
+    <link rel="stylesheet" href="<?php echo $baseURL.$theme; ?>css/sign-in.css" type="text/css" media="screen" />
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -51,13 +57,13 @@
 
                     <div class="span4 social">
                         <a href="#" class="circle facebook">
-                            <img src="img/face.png" alt="">
+                            <img src="<?php echo $baseURL.$theme; ?>img/face.png" alt="">
                         </a>
                          <a href="#" class="circle twitter">
-                            <img src="img/twt.png" alt="">
+                            <img src="<?php echo $baseURL.$theme; ?>img/twt.png" alt="">
                         </a>
                          <a href="#" class="circle gplus">
-                            <img src="img/gplus.png" alt="">
+                            <img src="<?php echo $baseURL.$theme; ?>img/gplus.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -134,13 +140,13 @@
                         <div class="box_cont">
                             <div class="social">
                                 <a href="#" class="circle facebook">
-                                    <img src="img/face.png" alt="">
+                                    <img src="<?php echo $baseURL.$theme; ?>img/face.png" alt="">
                                 </a>
                                  <a href="#" class="circle twitter">
-                                    <img src="img/twt.png" alt="">
+                                    <img src="<?php echo $baseURL.$theme; ?>img/twt.png" alt="">
                                 </a>
                                  <a href="#" class="circle gplus">
-                                    <img src="img/gplus.png" alt="">
+                                    <img src="<?php echo $baseURL.$theme; ?>img/gplus.png" alt="">
                                 </a>
                             </div>
 
@@ -242,7 +248,7 @@
     </footer>
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/theme.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>js/theme.js"></script>
 </body>
 </html>

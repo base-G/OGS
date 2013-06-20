@@ -1,4 +1,7 @@
 <?php
+	// import the config file
+	include_once("config.php");
+
 	/*
 	* This load tests uses the unique IDs for tests.
 	*/
@@ -10,7 +13,7 @@
 		$user = $_GET['_user'];
 	}
 
-	$con = mysqli_connect("localhost", "root", "baseg", "baseg");
+	$con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
 	if (mysqli_connect_errno($con)) {
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();

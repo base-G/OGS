@@ -1,3 +1,9 @@
+<?php
+
+// import the config file
+include_once("config.php");
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,13 +12,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
     <!-- Styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/jasny-bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/theme.css">
+    <link href="<?php echo $baseURL.$theme; ?>css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo $baseURL.$theme; ?>css/jasny-bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/theme.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="css/lib/animate.css" media="screen, projection">
-    <link rel="stylesheet" href="css/manage.css" type="text/css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/lib/animate.css" media="screen, projection">
+    <link rel="stylesheet" href="<?php echo $baseURL.$theme; ?>css/manage.css" type="text/css" media="screen" />
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -27,12 +33,12 @@
 <body>
 	<?php
                 spl_autoload_register( function($class) {
-                        include('classes/Login.class.php');
+                        include('../../classes/Login.class.php');
                 });
 
                 $login = new Login();
 
-		$con = mysqli_connect("localhost", "root", "baseg", "baseg");
+		$con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
                 $user = $_SESSION['user_email'];
                 $result = mysqli_query($con, "SELECT user_id FROM Accounts WHERE user_email = '" . $user . "'");
                 $result = mysqli_fetch_array($result);
@@ -114,8 +120,8 @@
   </thead>
   <tbody>
             <?php
-			mysql_connect("localhost","root","baseg");
-@mysql_select_db("baseg");
+			mysql_connect($dbHost, $dbUser, $dbPass);
+@mysql_select_db($dbName);
 			$query = "SELECT ClassName FROM Class WHERE CreatorID=".$id.""; 
 $result = mysql_query($query) or die(mysql_error());
 while($row = mysql_fetch_array($result))
@@ -205,10 +211,10 @@ while($row = mysql_fetch_array($result))
     </div>
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/jasny-bootstrap.js"></script>
-    <script src="js/theme.js"></script> 
+    <script src="<?php echo $baseURL.$theme; ?>js/bootstrap.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>js/jasny-bootstrap.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>js/theme.js"></script> 
     <script src="http://malsup.github.com/jquery.form.js"></script> 
-    <script src="js/manage.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>js/manage.js"></script>
 </body>
 </html>

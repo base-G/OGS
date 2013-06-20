@@ -1,4 +1,7 @@
 <?php
+	// import the config file
+	include_once("config.php");
+
 	if(isset($_POST['_test']) && !empty($_POST['_test'])) {
 		$_test = $_POST['_test'];
 	}
@@ -7,7 +10,7 @@
 		$_user = $_POST['_user'];
 	}
 
-	$con = mysqli_connect("localhost", "root", "", "baseg");
+	$con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 
 	if (mysqli_connect_errno($con)) {
   		echo "Failed to connect to MySQL: " . mysqli_connect_error();

@@ -1,7 +1,11 @@
 <?php
+
+	// import the config file
+	include_once("config.php");
+
 	 // Connect to the database
-	 $conn = mysql_connect("127.0.0.1", "root", "baseg") or die(mysql_error());
-			mysql_select_db("baseg") or die(mysql_error());
+	 $conn = mysql_connect($dbHost, $dbUser, $dbPass) or die(mysql_error());
+			mysql_select_db($dbName) or die(mysql_error());
 	
 	// Select this test from the database and its information
 	$deleteQuestions = 'DELETE FROM Questions WHERE TestID = '.$_POST['TestID'];
@@ -57,6 +61,6 @@
 			or die(mysql_error());
 			
 	//Redirect Back to Test Management Page
-	header( 'Location: /CreateOrManageTest.php?testID='.$testID.'&Updated=true' );
+	header( 'Location: '.$baseURL.'/CreateOrManageTest.php?testID='.$testID.'&Updated=true' );
 	
 ?>

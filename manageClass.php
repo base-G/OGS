@@ -1,3 +1,9 @@
+<?php
+
+// import the config file
+include_once("config.php");
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,13 +12,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
     <!-- Styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/jasny-bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/theme.css">
+    <link href="<?php echo $baseURL.$theme; ?>css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo $baseURL.$theme; ?>css/jasny-bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/theme.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="css/lib/animate.css" media="screen, projection">
-    <link rel="stylesheet" href="css/manage2.css" type="text/css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/lib/animate.css" media="screen, projection">
+    <link rel="stylesheet" href="<?php echo $baseURL.$theme; ?>css/manage2.css" type="text/css" media="screen" />
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -35,7 +41,7 @@
 
                 $login = new Login();
 
-		$con = mysqli_connect("localhost", "root", "baseg", "baseg");
+				$con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
                 $user = $_SESSION['user_email'];
                 $result = mysqli_query($con, "SELECT user_id FROM Accounts WHERE user_email = '" . $user . "'");
                 $result = mysqli_fetch_array($result);
@@ -57,25 +63,23 @@
                     <strong>base-G</strong>
                 </a>
                 <div class="nav-collapse collapse">
-			<ul class="nav pull-right">
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="about.php">About</a></li>
-
-                        <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                        <li><a href="annotation.php">Grade</a></li>
-                                        <li><a href="upload_file.php">Upload</a></li>
-                                        <li><a href="manageClass.php" class="active">Manage Classes</a></li>
-                                        <li><a href="SelectTest.php">Manage Tests</a></li>
-					<li><a href="results.php">Results</a></li>
-                                </ul>
-                        </li>
-                    <?php
-                        echo "<li><a class=\"btn-header\" href=\"process.php\">Signed in as: " . $_SESSION['user_email']  . "</a></li>";
-                    ?>
-                </ul>
-
+					<ul class="nav pull-right">
+                    	<li><a href="index.php">Home</a></li>
+                    	<li><a href="about.php" class="active">About</a></li>
+						<li class="dropdown">
+                        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+	                            <li><a href="annotation.php">Grade</a></li>
+	                            <li><a href="upload_file.php">Upload</a></li>
+	                            <li><a href="manageClass.php">Manage Classes</a></li>
+	                            <li><a href="SelectTest.php">Manage Tests</a></li>
+	                    		<li><a href="results.php">Results</a></li>
+							</ul>
+                    	</li>
+	                    <?php
+	                        echo "<li><a class=\"btn-header\" href=\"process.php\">Signed in as: " . $_SESSION['user_email']  . "</a></li>";
+	                    ?>
+                	</ul>
                 </div>
             </div>
           </div>
@@ -171,7 +175,7 @@
                         </div>
                         <div class="row copyright">
                             <div class="span12">
-                                © 2013 base-G. All rights reserved. Website theme thanks to Clean Canvas.
+                                © 2013 base-G. All rights reserved.
                             </div>
                         </div>
                     </div>            
@@ -181,10 +185,10 @@
     </div>
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/jasny-bootstrap.js"></script>
-    <script src="js/theme.js"></script> 
+    <script src="<?php echo $baseURL.$theme; ?>js/bootstrap.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>js/jasny-bootstrap.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>js/theme.js"></script> 
     <script src="http://malsup.github.com/jquery.form.js"></script> 
-    <script src="js/manage.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>js/manage.js"></script>
 </body>
 </html>

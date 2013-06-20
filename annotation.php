@@ -1,3 +1,10 @@
+<?php
+
+// import the config file
+include_once("config.php");
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,42 +13,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/theme.css">
+    <link href="<?php echo $baseURL.$theme; ?>css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/theme.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/blog.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="<?php echo $baseURL.$theme; ?>css/blog.css" type="text/css" media="screen" />
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-	<script type="text/javascript" src="js/pdf.js/src/network.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/chunked_stream.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/pdf_manager.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/core.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/util.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/api.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/canvas.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/obj.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/function.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/charsets.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/cidmaps.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/colorspace.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/crypto.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/evaluator.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/fonts.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/glyphlist.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/image.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/metrics.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/parser.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/pattern.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/stream.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/worker.js"></script>
-  <script type="text/javascript" src="js/pdf.js/external/jpgjs/jpg.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/jpx.js"></script>
-  <script type="text/javascript" src="js/pdf.js/src/jbig2.js"></script>
+	<script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/network.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/chunked_stream.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/pdf_manager.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/core.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/util.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/api.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/canvas.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/obj.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/function.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/charsets.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/cidmaps.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/colorspace.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/crypto.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/evaluator.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/fonts.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/glyphlist.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/image.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/metrics.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/parser.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/pattern.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/stream.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/worker.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/external/jpgjs/jpg.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/jpx.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/jbig2.js"></script>
 
     <script type="text/javascript">
-            PDFJS.workerSrc = 'js/pdf.js/src/worker_loader.js';
+            PDFJS.workerSrc = '<?php echo $baseURL.$theme; ?>js/pdf.js/src/worker_loader.js';
     </script>
 
     <style>
@@ -89,11 +96,11 @@
             margin-right: -1%;
         }
 
-	#controlpanel {
-		position: fixed;
-		top: 80% !important;
-		bottom: 1% !important;
-	}
+		#controlpanel {
+			position: fixed;
+			top: 80% !important;
+			bottom: 1% !important;
+		}
 
         #main {
             position: relative;
@@ -139,11 +146,13 @@
             margin-left: 1%
          }
 
-         #user { display: none;}
+         #user { 
+         	display: none;
+         }
 
-	button {
-		margin-top: 10px !important;
-	}
+		 button {
+			margin-top: 10px !important;
+		 }
     </style>
 </head>
 <body>
@@ -156,78 +165,47 @@
          	echo "<div id=\"user\">" . $_SESSION['user_email'] . "</div>";
 	?>
 
-    <div id="navhead" class="navbar navbar-inverse navbar-static-top navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="index.html">
-                <strong>base-G</strong>
-            </a>
-            <div class="nav-collapse collapse">
-                <ul class="nav pull-right">
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="about.php">About</a></li>
-			<li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                        <li><a href="annotation.php" class="active">Grade</a></li>
-                                        <li><a href="upload_file.php">Upload</a></li>
-                                        <li><a href="manageClass.php">Manage Classes</a></li>
-                                        <li><a href="SelectTest.php">Manage Tests</a></li>
-                                	<li><a href="results.php">Results</a></li>
-				</ul>
-                        </li>
-		
-			<!--
-                    <li><a href="#" class="active">Grade</a></li>
-                    <li><a href="upload_file.html">Upload</a></li>
-		    <li><a href="manageClass.php">Manage Classes</a></li>
-                    <li><a href="SelectTest.php">Manage Tests</a></li>
-			-->
-                    <?php
-                        echo "<li><a class=\"btn-header\" href=\"process.php\">Signed in as: " . $_SESSION['user_email']  . "</a></li>";
-                    ?>
-                </ul>
-            </div>
-        </div>
-      </div>
+      <div id="navhead" class="navbar navbar-inverse navbar-static-top navbar-fixed-top">
+    	<div class="navbar-inner">
+        	<div class="container">
+            	<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+               		 <span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+            	</a>
+           		<a class="brand" href="index.html">
+                	<strong>base-G</strong>
+            	</a>
+            	<div class="nav-collapse collapse">
+                	<ul class="nav pull-right">
+                    	<li><a href="index.php">Home</a></li>
+                    	<li><a href="about.php" class="active">About</a></li>
+						<li class="dropdown">
+                        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+	                            <li><a href="annotation.php">Grade</a></li>
+	                            <li><a href="upload_file.php">Upload</a></li>
+	                            <li><a href="CreateOrManageClass.php">Manage Classes</a></li>
+	                            <li><a href="SelectTest.php">Manage Tests</a></li>
+	                    		<li><a href="results.php">Results</a></li>
+							</ul>
+                    	</li>
+	                    <?php
+	                        echo "<li><a class=\"btn-header\" href=\"process.php\">Signed in as: " . $_SESSION['user_email']  . "</a></li>";
+	                    ?>
+                	</ul>
+            	</div>
+        	</div>
+      	</div>
     </div>
+
 
     <div class="container-fluid">
         <div class="row-fluid">
             <div id="side2" class="span3">
-		<!--
-                <form>
-                    <fieldset>
-                        <legend>Question 1</legend>
-                        <label>Points</label>
-                        <input type="text" placeholder="--/--">
-                        <span class="help-block"></span>
-                        <textarea>Comments</textarea>
-
-                        <label>Comments</label>
-                        <input type="text" placeholder="N/A">
-                    </fieldset>
-                </form>
-
-                <form>
-                    <fieldset>
-                        <legend>Question 2</legend>
-                        <label>Points</label>
-                        <input type="text" placeholder="--/--">
-                        <span class="help-block"></span>
-                        <textarea>Comments</textarea>
-                    </fieldset>
-                </form>
-		-->
+		
             </div>
         </div>
-
-<!--     <div id="container" class="container-fluid"> -->
         <div class="row-fluid">
             <div id="side" class="span3">
                 <div class="well sidebar-nav sidebar-nav-fixed">
@@ -239,7 +217,7 @@
 
                                 $login = new Login();
                             	
-				$con = mysqli_connect("localhost", "root", "baseg", "baseg");
+					$con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
                             	$user = $_SESSION['user_email'];
                             	$result = mysqli_query($con, "SELECT user_id FROM Accounts WHERE user_email = '" . $user . "'");
                             	$result = mysqli_fetch_array($result);
@@ -380,9 +358,9 @@
 	</div>
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/theme.js"></script>
-    <script src="js/canvas.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>js/theme.js"></script>
+    <script src="<?php echo $baseURL.$theme; ?>js/canvas.js"></script>
 
 </body>
 </html>

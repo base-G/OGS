@@ -1,5 +1,7 @@
 CTYPE html>
 	<?php 
+		// impoer config file
+		include_once("config.php");
 		include("classes/Login.class.php");
 
 		$theme = "";
@@ -11,7 +13,7 @@ CTYPE html>
 
 		if( !( $login->isLoggedIn() ) )
 		{
-			header( 'Location: /process.php' );
+			header( 'Location: '.$baseURL.'/process.php' );
 		}
 		else 
 		{
@@ -70,8 +72,8 @@ CTYPE html>
 		{
 			$return = NULL;
 
-			$conn = mysql_connect("127.0.0.1", "root", "baseg") or die(mysql_error());
-			mysql_select_db("baseg") or die(mysql_error());
+			$conn = mysql_connect($dbHost, $dbUser, $dbPass) or die(mysql_error());
+			mysql_select_db($dbName) or die(mysql_error());
 
 			// Select this test from the database and its information
 			$query_result = mysql_query("SELECT ClassID, ClassName FROM Class WHERE CreatorID = ".$owner)
@@ -90,7 +92,7 @@ CTYPE html>
 
 
 		/*
-		 * Given a testID, return all the information associatd with that test from the database.
+		 * Given a testID, return all the information associated with that test from the database.
 		 * 
 		 * Returns an associative array with the following informations
 		 * $return['TestID'] : The test's test id 
@@ -110,8 +112,8 @@ CTYPE html>
 			$return = NULL;
 
 			//connect to mysql database and fetch test information
-			$conn = mysql_connect("127.0.0.1", "root", "baseg") or die(mysql_error());
-			mysql_select_db("baseg") or die(mysql_error());
+			$conn = mysql_connect($dbHost, $dbUser, $dbPass) or die(mysql_error());
+			mysql_select_db($dbName) or die(mysql_error());
 
 			// Select this test from the database and its information
 			$query_result = mysql_query("SELECT TestID, TestName, ClassID, ClassName, CreatorID FROM Tests WHERE TestID = ".$testID)
@@ -159,12 +161,12 @@ CTYPE html>
 	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    
-	    <!-- Styles -->
-	    <link href="<?php echo $theme; ?>css/bootstrap.css" rel="stylesheet">
-	    <link rel="stylesheet" type="text/css" href="<?php echo $theme; ?>css/theme.css">
+	     <!-- Styles -->
+	    <link href="<?php echo $baseURL.$theme; ?>css/bootstrap.css" rel="stylesheet">
+	    <link rel="stylesheet" type="text/css" href="<?php echo $baseURL.$theme; ?>css/theme.css">
 	    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-	    <link rel="stylesheet" href="<?php echo $theme; ?>css/create_manage_test.css" type="text/css" media="screen" />
-	
+	    <link rel="stylesheet" href="<?php echo $baseURL.$theme; ?>css/create_manage_test.css" type="text/css" media="screen" />
+
 	    <!--[if lt IE 9]>
 	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	    <![endif]-->
@@ -229,33 +231,39 @@ CTYPE html>
 	<body>
 	
 		<div id="navhead" class="navbar navbar-inverse navbar-static-top navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="index.html">
-                <strong>base-G</strong>
-            </a>
-            <div class="nav-collapse collapse">
-                <ul class="nav pull-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="annotation.html">Grade</a></li>
-                    <li><a href="upload_file.html">Upload</a></li>
-                    <li><a href="manageClass.php">Manage Classes</a></li>
-                    <li><a href="SelectTest.php" class="active">Manage Tests</a></li>
-
-                    <?php
-                        echo "<li><a class=\"btn-header\" href=\"sign-up.html\">Signed in as: " . $_SESSION['user_email']  . "</a></li>";
-                    ?>
-                </ul>
-            </div>
-        </div>
-      </div>
+    	<div class="navbar-inner">
+        	<div class="container">
+            	<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+               		 <span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+            	</a>
+           		<a class="brand" href="index.html">
+                	<strong>base-G</strong>
+            	</a>
+            	<div class="nav-collapse collapse">
+                	<ul class="nav pull-right">
+                    	<li><a href="index.php">Home</a></li>
+                    	<li><a href="about.php" class="active">About</a></li>
+						<li class="dropdown">
+                        	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+	                            <li><a href="annotation.php">Grade</a></li>
+	                            <li><a href="upload_file.php">Upload</a></li>
+	                            <li><a href="manageClass.php">Manage Classes</a></li>
+	                            <li><a href="SelectTest.php">Manage Tests</a></li>
+	                    		<li><a href="results.php">Results</a></li>
+							</ul>
+                    	</li>
+	                    <?php
+	                        echo "<li><a class=\"btn-header\" href=\"process.php\">Signed in as: " . $_SESSION['user_email']  . "</a></li>";
+	                    ?>
+                	</ul>
+            	</div>
+        	</div>
+      	</div>
     </div>
+
 
 	<br /><br /><br /><br />		
 	
@@ -429,7 +437,7 @@ CTYPE html>
 	                    </div>
 	                    <div class="row copyright">
 	                        <div class="span12">
-	                            © 2013 baseG. All rights reserved.
+	                            	ï¿½ 2013 baseG. All rights reserved.
 	                        </div>
 	                    </div>
 	                </div>            
@@ -438,8 +446,8 @@ CTYPE html>
 	    </footer>
 	
 	    <script src="http://code.jquery.com/jquery-latest.js"></script>
-	    <script src="<?php echo $theme; ?>js/bootstrap.min.js"></script>
-	    <script src="<?php echo $theme; ?>js/theme.js"></script>
+	    <script src="<?php echo $baseURL.$theme; ?>js/bootstrap.min.js"></script>
+	    <script src="<?php echo $baseURL.$theme; ?>js/theme.js"></script>
 	</body>
 	</html>
 
