@@ -37,11 +37,9 @@ class Login {
 	private     $account_type           = "";                       // user's account type
     
     
-    public function __construct() {
+    public function __construct($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME) {
         
-        include_once("/var/www/config/db.php");                  // include database constants        
-        
-        if ($this->checkDatabase()) {                   // check for database connection
+        if ($this->checkDatabase($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME)) {                   // check for database connection
             
             session_start();                            // create session
 
@@ -63,10 +61,10 @@ class Login {
     }    
     
     
-    private function checkDatabase() {
+    private function checkDatabase($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME) {
         
         if (!$this->db) {                                                       // does db connection exist ?
-            $this->db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);         // create db connection     
+            $this->db = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);         // create db connection     
             return (!$this->db->connect_errno ? true : false);                  // if no connect errors return true else false
         }
         

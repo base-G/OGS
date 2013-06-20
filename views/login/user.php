@@ -1,8 +1,5 @@
 <?php
-
-// import the config file
-include_once("config.php");
-
+ // Don't need to import config because this script is included by process.php which alread includes config.php
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,7 +35,7 @@ include_once("config.php");
 
                 $login = new Login();
 
-		$con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
+				$con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
                 $user = $_SESSION['user_email'];
                 $result = mysqli_query($con, "SELECT user_id FROM Accounts WHERE user_email = '" . $user . "'");
                 $result = mysqli_fetch_array($result);

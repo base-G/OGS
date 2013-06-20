@@ -1,8 +1,5 @@
 <?php
-
-// import the config file
-include_once("config.php");
-
+ // Don't need to import config because this script is included by process.php which alread includes config.php
 ?>
 <!DOCTYPE html>
 <html>
