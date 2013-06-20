@@ -3,7 +3,7 @@
 
 $baseURL = "http://projects.codemelody.com/OGS/";
 
-$dbHost = "127.0.0.1";
+$dbHost = "localhost";
 $dbUser = "root";
 $dbPass = "baseg";
 $dbName = "baseg";

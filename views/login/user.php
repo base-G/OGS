@@ -1,8 +1,5 @@
 <?php
-
-// import the config file
-include_once("config.php");
-
+ // Don't need to import config because this script is included by process.php which alread includes config.php
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,7 +35,7 @@ include_once("config.php");
 
                 $login = new Login();
 
-		$con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
+				$con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
                 $user = $_SESSION['user_email'];
                 $result = mysqli_query($con, "SELECT user_id FROM Accounts WHERE user_email = '" . $user . "'");
                 $result = mysqli_fetch_array($result);
@@ -56,13 +53,13 @@ include_once("config.php");
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="brand" href="index.html">
+                <a class="brand" href="index.php">
                     <strong>base-G</strong>
                 </a>
                 <div class="nav-collapse collapse">
                     <ul class="nav pull-right">
                         <li><a href="process.php">Home</a></li>
-                        <li><a href="about.html">About</a></li>
+                        <li><a href="about.php">About</a></li>
 			
 			<li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Options <b class="caret"></b></a>

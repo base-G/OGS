@@ -10,11 +10,7 @@ spl_autoload_register( function($class) {
     include('classes/' . $class . '.class.php');
 });
 
-$login = new Login();
-
-
-//echo($_SESSION['user_name']);
-
+$login = new Login($dbHost, $dbUser, $dbPass, $dbName);
 
 if ($login->checkForRegisterPage()) {
         include("views/login/sign-in.php#signup");

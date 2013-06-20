@@ -1,6 +1,6 @@
 <?php
 	// import the config file
-	include_once("config.php");
+	include_once("../config.php");
 
 $myclass = $_POST['myclass'];
 $mytest  = $_POST['mytest'];

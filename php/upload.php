@@ -1,7 +1,7 @@
 <?php
 
 	// import the config file
-	include_once("config.php");
+	include_once("../config.php");
 
 # include parseCSV class.
 require_once('parsecsv.lib.php');

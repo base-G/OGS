@@ -1,6 +1,6 @@
 <?php
 	// import the config file
-	include_once("config.php");
+	include_once("../config.php");
 
 
 	if(isset($_POST['canvas']) && !empty($_POST['canvas'])) {
