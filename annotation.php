@@ -1,7 +1,7 @@
 <?php
 
 // import the config file
-include_once("config.php");
+include_once(__DIR__."/config.php");
 
 ?>
 
@@ -21,31 +21,31 @@ include_once("config.php");
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-	<script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/network.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/chunked_stream.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/pdf_manager.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/core.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/util.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/api.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/canvas.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/obj.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/function.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/charsets.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/cidmaps.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/colorspace.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/crypto.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/evaluator.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/fonts.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/glyphlist.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/image.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/metrics.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/parser.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/pattern.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/stream.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/worker.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/external/jpgjs/jpg.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/jpx.js"></script>
-  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdf.js/src/jbig2.js"></script>
+	<script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/network.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/chunked_stream.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/pdf_manager.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/core.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/util.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/api.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/canvas.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/obj.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/function.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/charsets.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/cidmaps.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/colorspace.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/crypto.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/evaluator.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/fonts.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/glyphlist.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/image.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/metrics.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/parser.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/pattern.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/stream.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/worker.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/external/jpgjs/jpg.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/jpx.js"></script>
+  <script type="text/javascript" src="<?php echo $baseURL.$theme; ?>js/pdfjs/src/jbig2.js"></script>
 
     <script type="text/javascript">
             PDFJS.workerSrc = '<?php echo $baseURL.$theme; ?>js/pdf.js/src/worker_loader.js';
@@ -161,7 +161,7 @@ include_once("config.php");
          		include('classes/Login.class.php');
          	});
 
-         	$login = new Login();
+         	$login = new Login($dbHost, $dbUser, $dbPass, $dbName);
          	echo "<div id=\"user\">" . $_SESSION['user_email'] . "</div>";
 	?>
 
@@ -185,7 +185,7 @@ include_once("config.php");
                             <ul class="dropdown-menu">
 	                            <li><a href="annotation.php">Grade</a></li>
 	                            <li><a href="upload_file.php">Upload</a></li>
-	                            <li><a href="CreateOrManageClass.php">Manage Classes</a></li>
+	                            <li><a href="manageClass.php">Manage Classes</a></li>
 	                            <li><a href="SelectTest.php">Manage Tests</a></li>
 	                    		<li><a href="results.php">Results</a></li>
 							</ul>
@@ -215,7 +215,7 @@ include_once("config.php");
                                         include('classes/Login.class.php');
                                 });
 
-                                $login = new Login();
+                                $login = new Login($dbHost, $dbUser, $dbPass, $dbName);
                             	
 					$con = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
                             	$user = $_SESSION['user_email'];
